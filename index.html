@@ -299,7 +299,6 @@
 
     <div class="container">
         
-        <!-- DASHBOARD VIEW -->
         <div id="dashboard-view" class="view-section">
             <div class="exam-header">
                 <h1>Checkpoint 02</h1>
@@ -309,7 +308,6 @@
                 </div>
             </div>
 
-            <!-- Question 1 -->
             <div class="level-card" onclick="openLevel(1)">
                 <div class="level-header">
                     <span class="level-title">Question 1</span>
@@ -328,7 +326,6 @@
                 </div>
             </div>
 
-            <!-- Question 2 -->
             <div class="level-card" onclick="openLevel(2)">
                 <div class="level-header">
                     <span class="level-title">Question 2</span>
@@ -348,7 +345,6 @@
                 </div>
             </div>
 
-            <!-- Question 3 -->
             <div class="level-card" onclick="openLevel(3)">
                 <div class="level-header">
                     <span class="level-title">Question 3</span>
@@ -369,7 +365,6 @@
                 </div>
             </div>
 
-            <!-- Question 4 -->
             <div class="level-card" onclick="openLevel(4)">
                 <div class="level-header">
                     <span class="level-title">Question 4</span>
@@ -391,7 +386,6 @@
                 </div>
             </div>
 
-            <!-- Question 5 -->
             <div class="level-card" onclick="openLevel(5)">
                 <div class="level-header">
                     <span class="level-title">Question 5</span>
@@ -416,7 +410,6 @@
                 </div>
             </div>
 
-            <!-- Question 6 -->
             <div class="level-card" onclick="openLevel(6)">
                 <div class="level-header">
                     <span class="level-title">Question 6</span>
@@ -433,7 +426,6 @@
                 </div>
             </div>
 
-            <!-- Question 7 -->
             <div class="level-card" onclick="openLevel(7)">
                 <div class="level-header">
                     <span class="level-title">Question 7</span>
@@ -451,7 +443,6 @@
             </div>
         </div>
 
-        <!-- DETAIL VIEW (Hidden by default) -->
         <div id="detail-view" class="view-section hidden">
             <button class="back-btn" onclick="showDashboard()">
                 <span>←</span> Back to Dashboard
@@ -461,14 +452,13 @@
                 <p style="color: var(--text-muted);">Click on a question below to reveal the subject.</p>
             </div>
             <div id="questions-container">
-                <!-- Content injected via JS -->
-            </div>
+                </div>
         </div>
 
     </div>
 
     <script>
-        // Data for all questions with prototypes
+        // Data for all questions with prototypes updated based on your provided solutions
         const questionsData = {
             1: [
                 { 
@@ -505,12 +495,12 @@
             2: [
                 { 
                     id: "checknumber", 
-                    desc: "Write a function that prints 'positive', 'negative' or 'null' depending on the number input.",
-                    proto: "func CheckNumber(arg string)"
+                    desc: "Write a function that returns true if the string passed as argument contains at least one digit (0-9), otherwise returns false.",
+                    proto: "func CheckNumber(arg string) bool"
                 },
                 { 
                     id: "countalpha", 
-                    desc: "Write a function that takes a string and returns the number of alphabetical characters in it.",
+                    desc: "Write a function that takes a string and returns the number of alphabetical characters (a-z, A-Z) in it.",
                     proto: "func CountAlpha(s string) int"
                 },
                 { 
@@ -520,76 +510,76 @@
                 },
                 { 
                     id: "printif", 
-                    desc: "Write a function that prints the string if the length is greater than or equal to 3.",
+                    desc: "Write a function that prints 'G' followed by a newline if the string length is greater than or equal to 3. Otherwise, print 'invalid input'.",
                     proto: "func PrintIf(str string)"
                 },
                 { 
                     id: "printifnot", 
-                    desc: "Write a function that prints the string if the length is less than 3.",
+                    desc: "Write a function that prints 'G' followed by a newline if the string length is less than 3. Otherwise, print 'invalid input'.",
                     proto: "func PrintIfNot(str string)"
                 },
                 { 
                     id: "rectperimeter", 
-                    desc: "Write a function that calculates and returns the perimeter of a rectangle given width and height. If w or h are negative, return -1.",
+                    desc: "Write a function that calculates and returns the perimeter of a rectangle given width and height. If w or h are negative or zero, return -1.",
                     proto: "func RectPerimeter(w, h int) int"
                 },
                 { 
                     id: "retainfirsthalf", 
-                    desc: "Write a function that returns the first half of a string. If the length is odd, round down. If string is empty, return empty.",
+                    desc: "Write a function that returns the first half of a string (len/2). If the length is 1, return the string. If empty, return empty.",
                     proto: "func RetainFirstHalf(str string) string"
                 }
             ],
             3: [
                 { 
                     id: "cameltosnakecase", 
-                    desc: "Write a function that converts a CamelCase string to snake_case. Return the string as is if it is not CamelCase.",
+                    desc: "Write a function that converts a CamelCase string to snake_case. Return the string as is if it is not valid CamelCase (contains numbers, symbols, trailing caps, or consecutive caps).",
                     proto: "func CamelToSnakeCase(s string) string"
                 },
                 { 
                     id: "digitlen", 
-                    desc: "Write a function that returns the length of a number (how many digits it has) in a given base.",
+                    desc: "Write a function that returns the length of a number (how many digits it has) in a given base (2-36). Return -1 if base is invalid. Handle negative numbers as positive.",
                     proto: "func DigitLen(n, base int) int"
                 },
                 { 
                     id: "firstword", 
-                    desc: "Write a function that returns the first word of a string. A word is a sequence of characters separated by spaces.",
+                    desc: "Write a function that returns the first word of a string followed by a newline. A word is a sequence of characters separated by spaces.",
                     proto: "func FirstWord(s string) string"
                 },
                 { 
                     id: "fishandchips", 
-                    desc: "Write a function that prints 'fish' if n is divisible by 2, 'chips' if by 3, 'fish and chips' if by both. If n is negative, print 'error: number is negative'.",
+                    desc: "Write a function that prints: 'fish' if n is divisible by 2, 'chips' if by 3, 'fish and chips' if by both. If n is negative, print 'number is negative'. If none, print 'non divisible'.",
                     proto: "func FishAndChips(n int)"
                 },
                 { 
                     id: "gcd", 
-                    desc: "Write a function that returns the Greatest Common Divisor of two integers.",
+                    desc: "Write a function that returns the Greatest Common Divisor of two unsigned integers.",
                     proto: "func Gcd(a, b uint) uint"
                 },
                 { 
                     id: "hashcode", 
-                    desc: "Write a function that returns a hashed string. The hash is computed by adding the ascii value of each char with the ascii value of the length of the string modulo 127.",
+                    desc: "Write a function that hashes a string: (ASCII + len) % 127. If result < 33, add 33. Return result string.",
                     proto: "func HashCode(dec string) string"
                 },
                 { 
                     id: "lastword", 
-                    desc: "Write a function that returns the last word of a string.",
+                    desc: "Write a function that returns the last word of a string followed by a newline.",
                     proto: "func LastWord(s string) string"
                 },
                 { 
                     id: "repeatalpha", 
-                    desc: "Write a function that returns a new string where each alphabetical character is repeated based on its index (a=1, b=2...).",
+                    desc: "Write a function that returns a new string where each char is repeated based on its alphabet index (A=1, B=2...). Non-letters stay same.",
                     proto: "func RepeatAlpha(s string) string"
                 }
             ],
             4: [
                 { 
                     id: "findprevprime", 
-                    desc: "Write a function that returns the first prime number previous to the number given as argument. If there is no previous prime, return 0.",
+                    desc: "Write a function that returns the first prime number previous to (or equal to) the number given as argument. If there is no prime <= nb (e.g. nb <= 2), return 0.",
                     proto: "func FindPrevPrime(nb int) int"
                 },
                 { 
                     id: "fromto", 
-                    desc: "Write a function that returns a string showing integers from A to B (inclusive) separated by ', '.",
+                    desc: "Write a function that returns a string showing integers from A to B (inclusive) separated by ', '. Digits must be 2 chars long (01, 02). Range 0-99. Return 'Invalid' if out of range.",
                     proto: "func FromTo(from int, to int) string"
                 },
                 { 
@@ -604,22 +594,22 @@
                 },
                 { 
                     id: "printmemory", 
-                    desc: "Write a function that displays the memory of a slice in hex format.",
+                    desc: "Write a function that displays a 10-byte array in Hex (4, 4, 2 lines) followed by ASCII chars, using z01.PrintRune.",
                     proto: "func PrintMemory(arr [10]byte)"
                 },
                 { 
                     id: "printrevcomb", 
-                    desc: "Write a program that prints all combinations of three different digits in descending order (987, 986... 021, 012).",
+                    desc: "Write a program that prints all combinations of three different digits in strictly descending order (e.g., '987, 986 ... 210').",
                     proto: "package main\n\nfunc main() {\n    // ...\n}"
                 },
                 { 
                     id: "thirdtimeisacharm", 
-                    desc: "Write a function that returns the third string passed to it. If there are fewer than 3 arguments, return a newline.",
+                    desc: "Write a function that returns a string containing every 3rd character of the input string. Always ends with a newline.",
                     proto: "func ThirdTimeIsACharm(str string) string"
                 },
                 { 
                     id: "weareunique", 
-                    desc: "Write a function that returns the number of unique characters that appear in both strings combined (if a char is in both, it's not unique).",
+                    desc: "Write a function that returns the count of characters unique to str1 (not in str2) plus characters unique to str2 (not in str1). Return -1 if both are empty.",
                     proto: "func WeAreUnique(str1, str2 string) int"
                 },
                 { 
@@ -781,22 +771,18 @@
                 `;
                 container.appendChild(item);
             });
-            window.scrollTo(0,0);
         }
 
         function toggleAccordion(header) {
             const content = header.nextElementSibling;
-            const isActive = content.classList.contains('active');
             
-            // Close all others
-            document.querySelectorAll('.accordion-content').forEach(c => {
-                c.classList.remove('active');
+            // Close others
+            const allContents = document.querySelectorAll('.accordion-content');
+            allContents.forEach(c => {
+                if(c !== content) c.classList.remove('active');
             });
 
-            // Toggle clicked
-            if (!isActive) {
-                content.classList.add('active');
-            }
+            content.classList.toggle('active');
         }
     </script>
 </body>
