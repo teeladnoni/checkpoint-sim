@@ -703,17 +703,33 @@
                 },
                 {
                     id: "hiddenp",
-                    desc: "Write a program named hiddenp that checks if the first string is hidden in the second string. If it is, print 1 followed by a newline. If not, print 0 followed by a newline. If invalid arguments, do nothing.",
+                    desc: `
+                            Write a program named hiddenp that takes two string arguments and checks whether the first string is hidden in the second one.
+
+                            A string is hidden in another one if it is possible to find the characters of the first one in the second one, in the same order.
+
+                            If the first string is hidden in the second one, the program prints 1 followed by a newline.
+
+                            If it is not, the program prints 0 followed by a newline.
+
+                            If the number of arguments is not 2, the program prints nothing.`,
                     proto: "package main\n\nfunc main() {\n    // ...\n}"
                 },
                 {
                     id: "inter",
-                    desc: "Write a program that displays the common characters between two strings, without duplicates, in the order they appear in the first string. If the number of arguments is not 2, display a newline.",
+                    desc: "Write a program that takes two string arguments and displays all of the characters that appear in both strings. The display order must be based on the order of characters in the first string. If a character appears multiple times in the first string, it must only be displayed once. If the number of arguments is not 2, the program displays nothing (or just a newline).",
                     proto: "package main\n\nfunc main() {\n    // ...\n}"
                 },
                 {
                     id: "reversestrcap",
-                    desc: "Write a program that takes one or more arguments and, for each argument, prints it with the last letter of each word capitalized and the rest in lowercase. If no arguments are provided, display a newline.",
+                    desc: `Write a program that takes one or more strings as arguments and displays them with exactly one space between each string.
+                            In each string, the last letter of each word must be in uppercase.
+
+                            All other letters must be in lowercase.
+
+                            A word is defined as a section of alphanumeric characters.
+
+                            If the number of arguments is 0, the program displays nothing.`,
                     proto: "package main\n\nfunc main() {\n    // ...\n}"
                 },
                 {
