@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piscine Go Exercises - Chat Log</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --chat-bg: #1e1e1e;
+            --user-msg-bg: #2b5278;
+            --ai-msg-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+            --accent-color: #4caf50;
+            --code-bg: #141414;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--chat-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .chat-area {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            max-width: 85%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            align-items: flex-end;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            align-items: flex-start;
+        }
+
+        .sender {
+            font-size: 0.75rem;
+            margin-bottom: 5px;
+            color: #aaa;
+            padding: 0 10px;
+        }
+
+        .bubble {
+            padding: 15px 20px;
+            border-radius: 15px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .message.user .bubble {
+            background-color: var(--user-msg-bg);
+            border-bottom-right-radius: 2px;
+        }
+
+        .message.ai .bubble {
+            background-color: var(--ai-msg-bg);
+            border-bottom-left-radius: 2px;
+            border: 1px solid #333;
+        }
+
+        /* Code Block Styling */
+        pre {
+            background-color: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #333;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Syntax Highlighting Colors */
+        .kw { color: #cc7832; font-weight: bold; } /* Keyword */
+        .func { color: #ffc66d; } /* Function */
+        .str { color: #6a8759; } /* String */
+        .num { color: #6897bb; } /* Number */
+        .com { color: #808080; font-style: italic; } /* Comment */
+        .typ { color: #a9b7c6; } /* Type */
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .copy-btn:hover {
+            opacity: 1;
+            background-color: #444;
+        }
+
+        /* Markdown Styles */
+        strong { color: #fff; font-weight: 700; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 5px; }
+        
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #555;
+            font-size: 0.8rem;
+            position: relative;
+        }
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #333;
+        }
+        .divider::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #333;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Piscine Go Review</h1>
+        <p>Exercises: Inter, Union, Hiddenp, Rstrcap, Wdmatch, Saveandmiss, Slice</p>
+    </header>
+
+    <div class="chat-area" id="chat-content">
+        </div>
+</div>
+
+<script>
+    // The chat data strictly filtered for Piscine exercises
+    const chatData = [
+        {
+            type: "user",
+            text: "Question: <strong>inter</strong> (Finding common characters)<br>I tried using a map but I want a beginner friendly way."
+        },
+        {
+            type: "ai",
+            text: `Here is the beginner-friendly version of <strong>inter</strong> without using maps. We check strings manually.<br><br>
+<pre><code>package main
+
+import (
+    "os"
+    "github.com/01-edu/z01"
+)
+
+// Helper to check existence
+func Contains(str string, char rune) bool {
+    for _, c := range str {
+        if c == char {
+            return true
+        }
+    }
+    return false
+}
+
+func main() {
+    if len(os.Args) != 3 {
+        return
+    }
+
+    s1 := os.Args[1]
+    s2 := os.Args[2]
+    printed := ""
+
+    for _, char := range s1 {
+        // If in s2 AND not printed yet
+        if Contains(s2, char) && !Contains(printed, char) {
+            z01.PrintRune(char)
+            printed += string(char)
+        }
+    }
+    z01.PrintRune('\\n')
+}</code></pre>`
+        },
+        {
+            type: "divider",
+            text: "Next Exercise"
+        },
+        {
+            type: "user",
+            text: "Question: <strong>issubsequence / hiddenp</strong><br>Check if s1 is hidden in s2. My code uses a pointer loop."
+        },
+        {
+            type: "ai",
+            text: `Your logic was correct (pointer method). Here is the exam-ready version for <strong>hiddenp</strong> (printing 1 or 0).<br><br>
+<pre><code>package main
+
+import (
+    "os"
+    "github.com/01-edu/z01"
+)
+
+func main() {
+    if len(os.Args) != 3 {
+        return
+    }
+
+    s1 := os.Args[1]
+    s2 := os.Args[2]
+
+    if s1 == "" {
+        z01.PrintRune('1')
+        z01.PrintRune('\\n')
+        return
+    }
+
+    i := 0
+    for _, r := range s2 {
+        if i < len(s1) && r == rune(s1[i]) {
+            i++
+        }
+    }
+
+    if i == len(s1) {
+        z01.PrintRune('1')
+    } else {
+        z01.PrintRune('0')
+    }
+    z01.PrintRune('\\n')
+}</code></pre>`
+        },
+        {
+            type: "divider",
+            text: "Next Exercise"
+        },
+        {
+            type: "user",
+            text: "Question: <strong>union</strong><br>Merge two strings, remove duplicates."
+        },
+        {
+            type: "ai",
+            text: `The most efficient way is to concatenate the arguments and loop once. Here is the corrected code passing strict formatting (newlines).<br><br>
+<pre><code>package main
+
+import (
+    "os"
+    "github.com/01-edu/z01"
+)
+
+func main() {
+    // 1. Check arguments
+    if len(os.Args) != 3 {
+        z01.PrintRune('\\n')
+        return
+    }
+
+    // 2. Combine strings
+    combined := os.Args[1] + os.Args[2]
+    seen := make(map[rune]bool)
+
+    // 3. Print unique chars
+    for _, a := range combined {
+        if !seen[a] {
+            z01.PrintRune(a)
+            seen[a] = true
+        }
+    }
+    z01.PrintRune('\\n')
+}</code></pre>`
+        },
+        {
+            type: "divider",
+            text: "Next Exercise"
+        },
+        {
+            type: "user",
+            text: "Question: <strong>rstrcap</strong><br>Capitalize the last letter of every word."
+        },
+        {
+            type: "ai",
+            text: `Your initial logic checked the <em>previous</em> character. For <strong>rstrcap</strong>, you must look <strong>ahead</strong>. If the next character is NOT a letter (or end of string), the current character is the last in the word.<br><br>
+<pre><code>package main
+
+import (
+    "os"
+    "github.com/01-edu/z01"
+)
+
+func isAlpha(r rune) bool {
+    return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z')
+}
+
+func toUpper(r rune) rune {
+    if r >= 'a' && r <= 'z' { return r - 32 }
+    return r
+}
+
+func toLower(r rune) rune {
+    if r >= 'A' && r <= 'Z' { return r + 32 }
+    return r
+}
+
+func main() {
+    if len(os.Args) < 2 { return }
+
+    for i, arg := range os.Args[1:] {
+        runes := []rune(arg)
+        for j, char := range runes {
+            if isAlpha(char) {
+                // Look Ahead: Is next char NOT alpha?
+                if j == len(runes)-1 || !isAlpha(runes[j+1]) {
+                    z01.PrintRune(toUpper(char))
+                } else {
+                    z01.PrintRune(toLower(char))
+                }
+            } else {
+                z01.PrintRune(char)
+            }
+        }
+        if i < len(os.Args)-2 {
+            z01.PrintRune(' ')
+        }
+    }
+    z01.PrintRune('\\n')
+}</code></pre>`
+        },
+        {
+            type: "divider",
+            text: "Next Exercise"
+        },
+        {
+            type: "user",
+            text: "Question: <strong>saveandmiss</strong><br>Save N characters, skip N characters."
+        },
+        {
+            type: "ai",
+            text: `The trick is to increment the loop by <code>num * 2</code> to jump over both blocks.<br><br>
+<pre><code>package piscine
+
+func SaveAndMiss(arg string, num int) string {
+    if num <= 0 { return arg }
+    var result string
+
+    // Increment by num * 2 (Save block + Miss block)
+    for i := 0; i < len(arg); i += num * 2 {
+        for j := i; j < i+num; j++ {
+            if j < len(arg) {
+                result += string(arg[j])
+            }
+        }
+    }
+    return result
+}</code></pre>`
+        },
+        {
+            type: "divider",
+            text: "Next Exercise"
+        },
+        {
+            type: "user",
+            text: "Question: <strong>wdmatch</strong><br>Print string if hidden in the second string."
+        },
+        {
+            type: "ai",
+            text: `This is similar to <code>hiddenp</code> but prints the string. Critical fix: Check <code>count < len(runes1)</code> to avoid crashes.<br><br>
+<pre><code>package main
+
+import (
+    "os"
+    "github.com/01-edu/z01"
+)
+
+func main() {
+    if len(os.Args) != 3 {
+        z01.PrintRune('\\n')
+        return
+    }
+
+    s1, s2 := os.Args[1], os.Args[2]
+    runes1 := []rune(s1)
+    count := 0
+
+    for _, r := range s2 {
+        if count < len(runes1) {
+            if r == runes1[count] {
+                count++
+            }
+        }
+    }
+
+    if count == len(runes1) {
+        for _, r := range s1 {
+            z01.PrintRune(r)
+        }
+        z01.PrintRune('\\n')
+    }
+}</code></pre>`
+        },
+        {
+            type: "divider",
+            text: "Next Exercise"
+        },
+        {
+            type: "user",
+            text: "Question: <strong>revconcatalternate</strong><br>Reverse slices and alternate them, starting with the longest."
+        },
+        {
+            type: "ai",
+            text: `Use two pointers starting at the end of the slices to handle the reverse and alternating logic simultaneously.<br><br>
+<pre><code>package piscine
+
+func RevConcatAlternate(slice1, slice2 []int) []int {
+    var result []int
+    i := len(slice1) - 1
+    j := len(slice2) - 1
+
+    for i >= 0 || j >= 0 {
+        // If s1 is longer or equal, it goes first
+        if len(slice1) >= len(slice2) {
+            if i >= 0 { result = append(result, slice1[i]); i-- }
+            if j >= 0 { result = append(result, slice2[j]); j-- }
+        } else {
+            // If s2 is longer
+            if j >= 0 { result = append(result, slice2[j]); j-- }
+            if i >= 0 { result = append(result, slice1[i]); i-- }
+        }
+    }
+    return result
+}</code></pre>`
+        },
+        {
+            type: "divider",
+            text: "Next Exercise"
+        },
+        {
+            type: "user",
+            text: "Question: <strong>slice</strong><br>Mimic Python slicing (negative indexes, clamping)."
+        },
+        {
+            type: "ai",
+            text: `Your solution was excellent. It handles variadic arguments and safely clamps indices.<br><br>
+<pre><code>package piscine
+
+func Slice(a []string, nbrs ...int) []string {
+    start, end := 0, len(a)
+    
+    if len(nbrs) > 0 { start = nbrs[0] }
+    if len(nbrs) > 1 { end = nbrs[1] }
+
+    // Handle negatives
+    if start < 0 { start = len(a) + start }
+    if end < 0 { end = len(a) + end }
+
+    // Clamp
+    if start < 0 { start = 0 }
+    if end > len(a) { end = len(a) }
+    if start > end { return nil }
+
+    return a[start:end]
+}</code></pre>`
+        }
+    ];
+
+    // --- RENDER LOGIC ---
+
+    const chatContainer = document.getElementById('chat-content');
+
+    // Simple syntax highlighter regex replacements
+    function syntaxHighlight(code) {
+        let html = code
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") // Escape HTML
+            .replace(/\b(package|import|func|var|return|if|else|for|range|break|continue|make|len|append)\b/g, '<span class="kw">$1</span>')
+            .replace(/\b(int|string|bool|rune|byte)\b/g, '<span class="typ">$1</span>')
+            .replace(/\b(true|false|nil)\b/g, '<span class="kw">$1</span>')
+            .replace(/("[^"]*")/g, '<span class="str">$1</span>')
+            .replace(/'([^']*)'/g, '<span class="str">\'$1\'</span>')
+            .replace(/\b(\d+)\b/g, '<span class="num">$1</span>')
+            .replace(/\/\/.*/g, '<span class="com">$&</span>')
+            .replace(/\b([A-Z][a-zA-Z0-9_]*)\b(?=\()/g, '<span class="func">$1</span>'); // Cap words before (
+        return html;
+    }
+
+    chatData.forEach(item => {
+        if (item.type === 'divider') {
+            const div = document.createElement('div');
+            div.className = 'divider';
+            div.textContent = item.text;
+            chatContainer.appendChild(div);
+            return;
+        }
+
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${item.type}`;
+
+        const senderDiv = document.createElement('div');
+        senderDiv.className = 'sender';
+        senderDiv.textContent = item.type === 'user' ? 'You' : 'Gemini';
+
+        const bubbleDiv = document.createElement('div');
+        bubbleDiv.className = 'bubble';
+        
+        // Process content to highlight code blocks
+        let content = item.text;
+        
+        // Temporary placeholders for code blocks to prevent highlighting messing up HTML tags
+        // But for this simple implementation, we assume code blocks are distinct.
+        
+        bubbleDiv.innerHTML = content;
+
+        // Apply syntax highlighting to code blocks inside the bubble
+        const codeBlocks = bubbleDiv.querySelectorAll('code');
+        codeBlocks.forEach(block => {
+            // Apply highlighting
+            block.innerHTML = syntaxHighlight(block.textContent);
+            
+            // Add Copy Button
+            const pre = block.parentElement;
+            if (pre.tagName === 'PRE') {
+                const btn = document.createElement('button');
+                btn.className = 'copy-btn';
+                btn.textContent = 'Copy';
+                btn.onclick = () => {
+                    navigator.clipboard.writeText(block.textContent);
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => btn.textContent = 'Copy', 2000);
+                };
+                pre.appendChild(btn);
+            }
+        });
+
+        msgDiv.appendChild(senderDiv);
+        msgDiv.appendChild(bubbleDiv);
+        chatContainer.appendChild(msgDiv);
+    });
+
+</script>
+
+</body>
+</html>
