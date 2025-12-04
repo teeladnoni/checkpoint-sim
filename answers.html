@@ -3,210 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piscine Go Exercises - Chat Log</title>
+    <title>Piscine Go: Full Q&A Archive</title>
     <style>
         :root {
-            --bg-color: #121212;
-            --chat-bg: #1e1e1e;
-            --user-msg-bg: #2b5278;
-            --ai-msg-bg: #2d2d2d;
-            --text-color: #e0e0e0;
-            --accent-color: #4caf50;
-            --code-bg: #141414;
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --header-bg: #2d3748;
+            --header-text: #ffffff;
+            --accent: #4299e1;
+            --code-bg: #1a202c;
+            --text-color: #2d3748;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             line-height: 1.6;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background-color: var(--chat-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
         }
 
         header {
-            background-color: #000;
-            padding: 20px;
             text-align: center;
-            border-bottom: 1px solid #333;
+            margin-bottom: 50px;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: var(--accent-color);
+            color: var(--header-bg);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
         header p {
-            margin: 5px 0 0;
-            font-size: 0.9rem;
-            color: #888;
+            color: #718096;
+            font-size: 1.1rem;
         }
 
-        .chat-area {
+        /* Card Styling */
+        .qa-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            overflow: hidden;
+            border-top: 6px solid var(--accent);
+        }
+
+        .qa-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f7fafc;
+        }
+
+        .qa-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--header-bg);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+        }
+
+        .qa-content {
+            padding: 30px;
+        }
+
+        /* Question Box */
+        .question-box {
+            background: #ebf8ff;
+            border-left: 4px solid var(--accent);
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
+            border-radius: 4px;
+            margin-bottom: 25px;
         }
 
-        .message {
-            display: flex;
-            flex-direction: column;
-            max-width: 85%;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .message.user {
-            align-self: flex-end;
-            align-items: flex-end;
-        }
-
-        .message.ai {
-            align-self: flex-start;
-            align-items: flex-start;
-        }
-
-        .sender {
+        .label {
+            display: block;
             font-size: 0.75rem;
-            margin-bottom: 5px;
-            color: #aaa;
-            padding: 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #718096;
+            margin-bottom: 8px;
+            font-weight: bold;
         }
 
-        .bubble {
-            padding: 15px 20px;
-            border-radius: 15px;
-            position: relative;
-            word-wrap: break-word;
-        }
-
-        .message.user .bubble {
-            background-color: var(--user-msg-bg);
-            border-bottom-right-radius: 2px;
-        }
-
-        .message.ai .bubble {
-            background-color: var(--ai-msg-bg);
-            border-bottom-left-radius: 2px;
-            border: 1px solid #333;
-        }
-
-        /* Code Block Styling */
-        pre {
-            background-color: var(--code-bg);
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            border: 1px solid #333;
+        /* Code Block */
+        .code-wrapper {
             position: relative;
             margin-top: 10px;
         }
 
-        code {
+        pre {
+            background-color: var(--code-bg);
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
             font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            margin: 0;
         }
 
-        /* Syntax Highlighting Colors */
-        .kw { color: #cc7832; font-weight: bold; } /* Keyword */
-        .func { color: #ffc66d; } /* Function */
-        .str { color: #6a8759; } /* String */
-        .num { color: #6897bb; } /* Number */
-        .com { color: #808080; font-style: italic; } /* Comment */
-        .typ { color: #a9b7c6; } /* Type */
+        /* Syntax Highlighting */
+        .kw { color: #d53f8c; font-weight: bold; } /* Keywords */
+        .func { color: #63b3ed; } /* Functions */
+        .str { color: #68d391; } /* Strings */
+        .type { color: #f6ad55; } /* Types */
+        .num { color: #f687b3; } /* Numbers */
+        .comment { color: #718096; font-style: italic; }
 
         .copy-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #333;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
             cursor: pointer;
-            font-size: 0.7rem;
-            opacity: 0.7;
-            transition: opacity 0.2s;
+            transition: background 0.2s;
         }
 
         .copy-btn:hover {
-            opacity: 1;
-            background-color: #444;
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Markdown Styles */
-        strong { color: #fff; font-weight: 700; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 5px; }
-        
-        .divider {
-            text-align: center;
-            margin: 20px 0;
-            color: #555;
-            font-size: 0.8rem;
-            position: relative;
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            background: #e2e8f0;
+            color: #4a5568;
+            margin-right: 5px;
         }
-        .divider::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 40%;
-            height: 1px;
-            background: #333;
-        }
-        .divider::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            width: 40%;
-            height: 1px;
-            background: #333;
-        }
-
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Piscine Go Review</h1>
-        <p>Exercises: Inter, Union, Hiddenp, Rstrcap, Wdmatch, Saveandmiss, Slice</p>
+        <h1>Piscine Go Archive</h1>
+        <p>A collection of exercises, instructions, and correct solutions.</p>
     </header>
 
-    <div class="chat-area" id="chat-content">
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>inter</h2>
+            <span class="tag">String Manipulation</span>
         </div>
-</div>
-
-<script>
-    // The chat data strictly filtered for Piscine exercises
-    const chatData = [
-        {
-            type: "user",
-            text: "Question: <strong>inter</strong> (Finding common characters)<br>I tried using a map but I want a beginner friendly way."
-        },
-        {
-            type: "ai",
-            text: `Here is the beginner-friendly version of <strong>inter</strong> without using maps. We check strings manually.<br><br>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Write a program that takes two string arguments and displays all of the characters that appear in <strong>both</strong> strings.<br>
+                • Display order must be based on the <strong>first</strong> string.<br>
+                • No duplicates.<br>
+                • If args != 2, display nothing.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
 <pre><code>package main
 
 import (
@@ -214,7 +180,7 @@ import (
     "github.com/01-edu/z01"
 )
 
-// Helper to check existence
+// Helper to avoid writing nested loops repeatedly
 func Contains(str string, char rune) bool {
     for _, c := range str {
         if c == char {
@@ -234,26 +200,76 @@ func main() {
     printed := ""
 
     for _, char := range s1 {
-        // If in s2 AND not printed yet
+        // If char is in s2 AND we haven't printed it yet
         if Contains(s2, char) && !Contains(printed, char) {
             z01.PrintRune(char)
             printed += string(char)
         }
     }
-    z01.PrintRune('\\n')
-}</code></pre>`
-        },
-        {
-            type: "divider",
-            text: "Next Exercise"
-        },
-        {
-            type: "user",
-            text: "Question: <strong>issubsequence / hiddenp</strong><br>Check if s1 is hidden in s2. My code uses a pointer loop."
-        },
-        {
-            type: "ai",
-            text: `Your logic was correct (pointer method). Here is the exam-ready version for <strong>hiddenp</strong> (printing 1 or 0).<br><br>
+    z01.PrintRune('\n')
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>union</h2>
+            <span class="tag">String Manipulation</span>
+        </div>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Write a program that takes two strings and displays characters that appear in <strong>either</strong> one.<br>
+                • No duplicates.<br>
+                • Order of first occurrence (start with s1, then s2).<br>
+                • If args != 2, display newline.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
+<pre><code>package main
+
+import (
+    "os"
+    "github.com/01-edu/z01"
+)
+
+func main() {
+    if len(os.Args) != 3 {
+        z01.PrintRune('\n')
+        return
+    }
+
+    // Concatenate s1 and s2 to handle them as one sequence
+    combined := os.Args[1] + os.Args[2]
+    seen := make(map[rune]bool)
+
+    for _, char := range combined {
+        if !seen[char] {
+            z01.PrintRune(char)
+            seen[char] = true
+        }
+    }
+    z01.PrintRune('\n')
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>hiddenp</h2>
+            <span class="tag">Pointers / Logic</span>
+        </div>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Check if the first string is hidden in the second one (subsequence).<br>
+                • If found, print <code>1</code> followed by newline.<br>
+                • If not, print <code>0</code> followed by newline.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
 <pre><code>package main
 
 import (
@@ -269,9 +285,10 @@ func main() {
     s1 := os.Args[1]
     s2 := os.Args[2]
 
+    // Empty string is technically hidden in everything
     if s1 == "" {
         z01.PrintRune('1')
-        z01.PrintRune('\\n')
+        z01.PrintRune('\n')
         return
     }
 
@@ -287,20 +304,26 @@ func main() {
     } else {
         z01.PrintRune('0')
     }
-    z01.PrintRune('\\n')
-}</code></pre>`
-        },
-        {
-            type: "divider",
-            text: "Next Exercise"
-        },
-        {
-            type: "user",
-            text: "Question: <strong>union</strong><br>Merge two strings, remove duplicates."
-        },
-        {
-            type: "ai",
-            text: `The most efficient way is to concatenate the arguments and loop once. Here is the corrected code passing strict formatting (newlines).<br><br>
+    z01.PrintRune('\n')
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>wdmatch</h2>
+            <span class="tag">Pointers / Logic</span>
+        </div>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Check if the first string is hidden in the second one.<br>
+                • If possible, display the <strong>string itself</strong> followed by a newline.<br>
+                • If not, display nothing.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
 <pre><code>package main
 
 import (
@@ -309,37 +332,49 @@ import (
 )
 
 func main() {
-    // 1. Check arguments
     if len(os.Args) != 3 {
-        z01.PrintRune('\\n')
+        z01.PrintRune('\n')
         return
     }
 
-    // 2. Combine strings
-    combined := os.Args[1] + os.Args[2]
-    seen := make(map[rune]bool)
+    s1, s2 := os.Args[1], os.Args[2]
+    runes1 := []rune(s1)
+    count := 0
 
-    // 3. Print unique chars
-    for _, a := range combined {
-        if !seen[a] {
-            z01.PrintRune(a)
-            seen[a] = true
+    for _, r := range s2 {
+        // Critical Fix: Check count < length before accessing array
+        if count < len(runes1) {
+            if r == runes1[count] {
+                count++
+            }
         }
     }
-    z01.PrintRune('\\n')
-}</code></pre>`
-        },
-        {
-            type: "divider",
-            text: "Next Exercise"
-        },
-        {
-            type: "user",
-            text: "Question: <strong>rstrcap</strong><br>Capitalize the last letter of every word."
-        },
-        {
-            type: "ai",
-            text: `Your initial logic checked the <em>previous</em> character. For <strong>rstrcap</strong>, you must look <strong>ahead</strong>. If the next character is NOT a letter (or end of string), the current character is the last in the word.<br><br>
+
+    if count == len(runes1) {
+        for _, r := range s1 {
+            z01.PrintRune(r)
+        }
+        z01.PrintRune('\n')
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>rstrcap</h2>
+            <span class="tag">Formatting / Logic</span>
+        </div>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Capitalize the <strong>last letter of each word</strong>.<br>
+                • Lowercase the rest.<br>
+                • "Word" = alphanumeric characters.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
 <pre><code>package main
 
 import (
@@ -368,7 +403,7 @@ func main() {
         runes := []rune(arg)
         for j, char := range runes {
             if isAlpha(char) {
-                // Look Ahead: Is next char NOT alpha?
+                // Look Ahead: If next char is NOT alpha, this is the end of word
                 if j == len(runes)-1 || !isAlpha(runes[j+1]) {
                     z01.PrintRune(toUpper(char))
                 } else {
@@ -382,27 +417,34 @@ func main() {
             z01.PrintRune(' ')
         }
     }
-    z01.PrintRune('\\n')
-}</code></pre>`
-        },
-        {
-            type: "divider",
-            text: "Next Exercise"
-        },
-        {
-            type: "user",
-            text: "Question: <strong>saveandmiss</strong><br>Save N characters, skip N characters."
-        },
-        {
-            type: "ai",
-            text: `The trick is to increment the loop by <code>num * 2</code> to jump over both blocks.<br><br>
+    z01.PrintRune('\n')
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>saveandmiss</h2>
+            <span class="tag">Loops</span>
+        </div>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Write a function <code>SaveAndMiss(arg string, num int) string</code>.<br>
+                • Save <code>num</code> characters.<br>
+                • Skip <code>num</code> characters.<br>
+                • Repeat.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
 <pre><code>package piscine
 
 func SaveAndMiss(arg string, num int) string {
     if num <= 0 { return arg }
     var result string
 
-    // Increment by num * 2 (Save block + Miss block)
+    // Increment i by num * 2 to jump over the "Save" AND the "Miss" block
     for i := 0; i < len(arg); i += num * 2 {
         for j := i; j < i+num; j++ {
             if j < len(arg) {
@@ -411,63 +453,77 @@ func SaveAndMiss(arg string, num int) string {
         }
     }
     return result
-}</code></pre>`
-        },
-        {
-            type: "divider",
-            text: "Next Exercise"
-        },
-        {
-            type: "user",
-            text: "Question: <strong>wdmatch</strong><br>Print string if hidden in the second string."
-        },
-        {
-            type: "ai",
-            text: `This is similar to <code>hiddenp</code> but prints the string. Critical fix: Check <code>count < len(runes1)</code> to avoid crashes.<br><br>
-<pre><code>package main
+}</code></pre>
+            </div>
+        </div>
+    </div>
 
-import (
-    "os"
-    "github.com/01-edu/z01"
-)
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>fifthandskip</h2>
+            <span class="tag">Loops / String</span>
+        </div>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Write a function <code>FifthAndSkip(str string) string</code>.<br>
+                • Remove spaces from input.<br>
+                • If length < 5, return "Invalid Input".<br>
+                • Take 5 chars, skip the 6th, add a space between groups.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
+<pre><code>package piscine
 
-func main() {
-    if len(os.Args) != 3 {
-        z01.PrintRune('\\n')
-        return
+func FifthAndSkip(str string) string {
+    // 1. Clean the string (Remove spaces)
+    cleaned := ""
+    if str == "" { return "\n" }
+    for _, char := range str {
+        if char != ' ' {
+            cleaned += string(char)
+        }
     }
 
-    s1, s2 := os.Args[1], os.Args[2]
-    runes1 := []rune(s1)
+    if len(cleaned) < 5 { return "Invalid Input\n" }
+
+    result := ""
     count := 0
 
-    for _, r := range s2 {
-        if count < len(runes1) {
-            if r == runes1[count] {
-                count++
+    for i := 0; i < len(cleaned); i++ {
+        result += string(cleaned[i])
+        count++
+
+        if count == 5 {
+            if i+1 < len(cleaned) {
+                result += " "
+                i++ // Skip the 6th character manually
             }
+            count = 0
         }
     }
 
-    if count == len(runes1) {
-        for _, r := range s1 {
-            z01.PrintRune(r)
-        }
-        z01.PrintRune('\\n')
-    }
-}</code></pre>`
-        },
-        {
-            type: "divider",
-            text: "Next Exercise"
-        },
-        {
-            type: "user",
-            text: "Question: <strong>revconcatalternate</strong><br>Reverse slices and alternate them, starting with the longest."
-        },
-        {
-            type: "ai",
-            text: `Use two pointers starting at the end of the slices to handle the reverse and alternating logic simultaneously.<br><br>
+    return result + "\n"
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>revconcatalternate</h2>
+            <span class="tag">Slices</span>
+        </div>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Write a function <code>RevConcatAlternate(slice1, slice2 []int) []int</code>.<br>
+                • Reverse the values of both slices.<br>
+                • Alternate between them (starting with the longer slice).<br>
+                • Append remaining values.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
 <pre><code>package piscine
 
 func RevConcatAlternate(slice1, slice2 []int) []int {
@@ -476,7 +532,7 @@ func RevConcatAlternate(slice1, slice2 []int) []int {
     j := len(slice2) - 1
 
     for i >= 0 || j >= 0 {
-        // If s1 is longer or equal, it goes first
+        // If s1 is longer (or equal), it goes first
         if len(slice1) >= len(slice2) {
             if i >= 0 { result = append(result, slice1[i]); i-- }
             if j >= 0 { result = append(result, slice2[j]); j-- }
@@ -487,24 +543,32 @@ func RevConcatAlternate(slice1, slice2 []int) []int {
         }
     }
     return result
-}</code></pre>`
-        },
-        {
-            type: "divider",
-            text: "Next Exercise"
-        },
-        {
-            type: "user",
-            text: "Question: <strong>slice</strong><br>Mimic Python slicing (negative indexes, clamping)."
-        },
-        {
-            type: "ai",
-            text: `Your solution was excellent. It handles variadic arguments and safely clamps indices.<br><br>
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="qa-card">
+        <div class="qa-header">
+            <h2>slice</h2>
+            <span class="tag">Variadic / Logic</span>
+        </div>
+        <div class="qa-content">
+            <div class="question-box">
+                <span class="label">Assignment Instructions</span>
+                Write a function that mimics Python slicing.<br>
+                • Takes slice and variadic ints (start, end).<br>
+                • Handle negative indices (count from end).<br>
+                • Clamp to valid bounds.
+            </div>
+            <span class="label">Correct Solution</span>
+            <div class="code-wrapper">
 <pre><code>package piscine
 
 func Slice(a []string, nbrs ...int) []string {
     start, end := 0, len(a)
-    
+
+    // Handle optional arguments
     if len(nbrs) > 0 { start = nbrs[0] }
     if len(nbrs) > 1 { end = nbrs[1] }
 
@@ -515,85 +579,45 @@ func Slice(a []string, nbrs ...int) []string {
     // Clamp
     if start < 0 { start = 0 }
     if end > len(a) { end = len(a) }
+    
+    // Invalid range
     if start > end { return nil }
 
     return a[start:end]
-}</code></pre>`
-        }
-    ];
+}</code></pre>
+            </div>
+        </div>
+    </div>
 
-    // --- RENDER LOGIC ---
+</div>
 
-    const chatContainer = document.getElementById('chat-content');
-
-    // Simple syntax highlighter regex replacements
-    function syntaxHighlight(code) {
-        let html = code
-            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") // Escape HTML
-            .replace(/\b(package|import|func|var|return|if|else|for|range|break|continue|make|len|append)\b/g, '<span class="kw">$1</span>')
-            .replace(/\b(int|string|bool|rune|byte)\b/g, '<span class="typ">$1</span>')
+<script>
+    // Syntax Highlighter & Copy Functionality
+    document.querySelectorAll('pre code').forEach((block) => {
+        let html = block.innerHTML;
+        // Simple regex highlighting
+        html = html
+            .replace(/\b(package|import|func|var|return|if|else|for|range|make|len|append)\b/g, '<span class="kw">$1</span>')
+            .replace(/\b(int|string|bool|rune|byte)\b/g, '<span class="type">$1</span>')
             .replace(/\b(true|false|nil)\b/g, '<span class="kw">$1</span>')
             .replace(/("[^"]*")/g, '<span class="str">$1</span>')
             .replace(/'([^']*)'/g, '<span class="str">\'$1\'</span>')
-            .replace(/\b(\d+)\b/g, '<span class="num">$1</span>')
-            .replace(/\/\/.*/g, '<span class="com">$&</span>')
-            .replace(/\b([A-Z][a-zA-Z0-9_]*)\b(?=\()/g, '<span class="func">$1</span>'); // Cap words before (
-        return html;
-    }
+            .replace(/\/\/.*/g, '<span class="comment">$&</span>')
+            .replace(/\b(\d+)\b/g, '<span class="num">$1</span>');
+        block.innerHTML = html;
 
-    chatData.forEach(item => {
-        if (item.type === 'divider') {
-            const div = document.createElement('div');
-            div.className = 'divider';
-            div.textContent = item.text;
-            chatContainer.appendChild(div);
-            return;
-        }
-
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `message ${item.type}`;
-
-        const senderDiv = document.createElement('div');
-        senderDiv.className = 'sender';
-        senderDiv.textContent = item.type === 'user' ? 'You' : 'Gemini';
-
-        const bubbleDiv = document.createElement('div');
-        bubbleDiv.className = 'bubble';
-        
-        // Process content to highlight code blocks
-        let content = item.text;
-        
-        // Temporary placeholders for code blocks to prevent highlighting messing up HTML tags
-        // But for this simple implementation, we assume code blocks are distinct.
-        
-        bubbleDiv.innerHTML = content;
-
-        // Apply syntax highlighting to code blocks inside the bubble
-        const codeBlocks = bubbleDiv.querySelectorAll('code');
-        codeBlocks.forEach(block => {
-            // Apply highlighting
-            block.innerHTML = syntaxHighlight(block.textContent);
-            
-            // Add Copy Button
-            const pre = block.parentElement;
-            if (pre.tagName === 'PRE') {
-                const btn = document.createElement('button');
-                btn.className = 'copy-btn';
-                btn.textContent = 'Copy';
-                btn.onclick = () => {
-                    navigator.clipboard.writeText(block.textContent);
-                    btn.textContent = 'Copied!';
-                    setTimeout(() => btn.textContent = 'Copy', 2000);
-                };
-                pre.appendChild(btn);
-            }
-        });
-
-        msgDiv.appendChild(senderDiv);
-        msgDiv.appendChild(bubbleDiv);
-        chatContainer.appendChild(msgDiv);
+        // Add Copy Button
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy';
+        btn.onclick = () => {
+            const rawText = block.innerText;
+            navigator.clipboard.writeText(rawText);
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        };
+        block.parentElement.appendChild(btn);
     });
-
 </script>
 
 </body>
