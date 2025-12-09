@@ -594,7 +594,23 @@
             3: [
                 {
                     id: "cameltosnakecase",
-                    desc: "Write a function that converts a CamelCase string to snake_case. Return the string as is if it is not valid CamelCase (contains numbers, symbols, trailing caps, or consecutive caps).",
+                    desc: `Write a function that converts a string from camelCase to snake_case.
+                        <ol>
+                        <li> If the string is empty, return an empty string. </li>
+                        <li> If the string is not camelCase, return the string unchanged. </li>
+                        <li> If the string is camelCase, return the snake_case version of the string. </li>
+                        </ol>
+
+                        For this exercise you need to know that camelCase has two different writing alternatives that will be accepted:
+                        lowerCamelCase
+                        UpperCamelCase
+                        <br>Rules for writing in camelCase:</br>
+                        <ol>
+                        <li> The word does not end on a capitalized letter (CamelCasE). </li>
+                        <li> No two capitalized letters shall follow directly each other (CamelCAse). </li>
+                        <li> Numbers or punctuation are not allowed in the word anywhere (camelCase1). </li>
+                        </ol>
+                    `,
                     proto: "func CamelToSnakeCase(s string) string"
                 },
                 {
