@@ -670,47 +670,69 @@
             4: [
                 {
                     id: "findprevprime",
-                    desc: "Write a function that returns the first prime number previous to (or equal to) the number given as argument. If there is no prime <= nb (e.g. nb <= 2), return 0.",
+                    desc: `Write a function that returns the first prime number that is equal or inferior to the int passed as parameter.
+                            <br>If there are no primes inferior to the int passed as parameter the function should return 0.`,
                     proto: "func FindPrevPrime(nb int) int"
                 },
                 {
                     id: "fromto",
-                    desc: "Write a function that returns a string showing integers from A to B (inclusive) separated by ', '. Digits must be 2 chars long (01, 02). Range 0-99. Return 'Invalid' if out of range.",
+                    desc: `Write a function that takes two integers and returns a string showing the range of numbers from the first to the second.
+                    <ul>
+                            <li>The numbers must be separated by a comma and a space.</li>
+                            <li>If any of the arguments is bigger than 99 or less than 0, the function returns Invalid followed by a newline \n.</li>
+                            <li>Prepend a 0 to any number that is less than 10.</li>
+                            <li>Add a new line \n at the end of the string.</li></ul>`,
                     proto: "func FromTo(from int, to int) string"
                 },
                 {
                     id: "iscapitalized",
-                    desc: "Write a function that returns true if each word in the string begins with a capital letter or is non-alphanumeric.",
+                    desc: `Write a function IsCapitalized() that takes a string as an argument and returns true if each word in the string begins with either an uppercase letter or a non-alphabetic character.
+                        <ul>
+                            <li>If any of the words begin with a lowercase letter return false.</li>
+                            <li>If the string is empty return false.</li></ul>`,
                     proto: "func IsCapitalized(s string) bool"
                 },
                 {
                     id: "itoa",
-                    desc: "Write a function that converts a number to a string (equivalent to strconv.Itoa).",
+                    desc: `<ul><li>Write a function that simulates the behavior of the Itoa function in Go. 
+                        <br>Itoa transforms a number represented as anint in a number represented as a string.</li>
+                            <li>For this exercise the handling of the signs + or - does have to be taken into account.</li></ul>`,
                     proto: "func Itoa(n int) string"
                 },
                 {
                     id: "printmemory",
-                    desc: "Write a function that displays a 10-byte array in Hex (4, 4, 2 lines) followed by ASCII chars, using z01.PrintRune.",
+                    desc: `Write a function that takes (arr [10]byte), and displays the memory as in the example.<br>
+                        After displaying the memory the function must display all the ASCII graphic characters. The non printable characters must be replaced by a dot.
+                        <br>The ASCII graphic characters are any characters intended to be written, printed, or otherwise displayed in a form that can be read by humans, present on the ASCII encoding.`,
                     proto: "func PrintMemory(arr [10]byte)"
                 },
                 {
                     id: "printrevcomb",
-                    desc: "Write a program that prints all combinations of three different digits in strictly descending order (e.g., '987, 986 ... 210').",
+                    desc: `Write a program that prints in descending order on a single line all unique combinations of three different digits so that the first digit is greater than the second and the second is greater than the third.
+                            <br>These combinations are separated by a comma and a space.`,
                     proto: "package main\n\nfunc main() {\n    // ...\n}"
                 },
                 {
                     id: "thirdtimeisacharm",
-                    desc: "Write a function that returns a string containing every 3rd character of the input string. Always ends with a newline.",
+                    desc: `Write a function ThirdTimeIsACharm() that takes a string as an argument and returns another string with every third character.
+                    <ul>
+                    <li>Return the output followed by a newline \n. </li>
+                    <li>If the string is empty, return a newline \n. </li>
+                    <li>If there is no third character, return a newline \n. </li></ul>`,
                     proto: "func ThirdTimeIsACharm(str string) string"
                 },
                 {
                     id: "weareunique",
-                    desc: "Write a function that returns the count of characters unique to str1 (not in str2) plus characters unique to str2 (not in str1). Return -1 if both are empty.",
+                    desc: `Write a function that takes two strings's and returns the number of characters that are not included in both, without repeating characters.
+                    <ul>
+                            <li>If there is no unique characters return 0.</li>
+                            <li>If both strings are empty return -1.</li></ul>`,
                     proto: "func WeAreUnique(str1, str2 string) int"
                 },
                 {
                     id: "zipstring",
-                    desc: "Write a function that groups consecutive identical characters and counts them (e.g., 'aaabb' -> '3a2b').",
+                    desc: `Write a function that takes a string and returns a new string that replaces every character with the number of duplicates and the character itself, deleting the extra duplications.
+                            <ul><li>The letters are from the latin alphabet list only. Any other character, symbols, shall not be tested.</li><ul>`,
                     proto: "func ZipString(s string) string"
                 }
             ],
