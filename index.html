@@ -565,9 +565,9 @@
                 {
                     id: "printif",
                     desc: `Write a function that takes a string as an argument and returns the letter G followed by a newline \n if the argument length is more or equal than 3,
-                         otherwise returns Invalid Input followed by a newline \n.
-                        If it's an empty string return G followed by a newline \n.`,
-                    proto: "func PrintIf(str string)"
+                         otherwise returns Invalid Input followed by a newline \\n.
+                        If it's an empty string return G followed by a newline \\n.`,
+                    proto: "func PrintIf(str string) string"
                 },
                 {
                     id: "printifnot",
@@ -656,7 +656,7 @@
                 },
                 {
                     id: "lastword",
-                    desc: `Write a function LastWord that takes a string and returns its last word followed by a \n. <br>
+                    desc: `Write a function LastWord that takes a string and returns its last word followed by a \\n. <br>
                             <ul><li>A word is a section of string delimited by spaces or by the start/end of the string.</li></ul>`,
                     proto: "func LastWord(s string) string"
                 },
@@ -671,7 +671,14 @@
                 {
                     id: "findprevprime",
                     desc: `Write a function that returns the first prime number that is equal or inferior to the int passed as parameter.
-                            <br>If there are no primes inferior to the int passed as parameter the function should return 0.`,
+                            <br>If there are no primes inferior to the int passed as parameter the function should return 0.<br><br>
+                            package main <br>
+                            import "fmt"<br>
+                            
+                            func main() { <br>
+                            	fmt.Println(FindPrevPrime(5))
+                            	<br>fmt.Println(FindPrevPrime(4))<br>
+                            }`,
                     proto: "func FindPrevPrime(nb int) int"
                 },
                 {
@@ -681,7 +688,7 @@
                             <li>The numbers must be separated by a comma and a space.</li>
                             <li>If any of the arguments is bigger than 99 or less than 0, the function returns Invalid followed by a newline \n.</li>
                             <li>Prepend a 0 to any number that is less than 10.</li>
-                            <li>Add a new line \n at the end of the string.</li></ul>`,
+                            <li>Add a new line \\n at the end of the string.</li></ul>`,
                     proto: "func FromTo(from int, to int) string"
                 },
                 {
