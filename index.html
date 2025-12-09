@@ -1065,6 +1065,9 @@ func main() {
                     desc: `Write a program that prints in descending order on a single line all unique combinations of three different digits so that the first digit is greater than the second and the second is greater than the third.
                             <br>These combinations are separated by a comma and a space.`,
                     proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    usageOutput: `$ go run . | cat -e
+987, 986, 985, 984, 983, 982, 981, 980, 976, ..., 310, 210$
+$`
                 },
                 {
                     id: "thirdtimeisacharm",
