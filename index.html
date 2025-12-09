@@ -699,7 +699,23 @@
                             <li>The numbers must be separated by a comma and a space.</li>
                             <li>If any of the arguments is bigger than 99 or less than 0, the function returns Invalid followed by a newline \n.</li>
                             <li>Prepend a 0 to any number that is less than 10.</li>
-                            <li>Add a new line \\n at the end of the string.</li></ul>`,
+                            <li>Add a new line \\n at the end of the string.</li></ul>
+                            <br> <b class="red">Here is a possible program to test your function:</b>
+                            <div class="tester">
+                                package main
+
+                           <br> import ( <br>
+                            	"fmt" <br>
+                            )<br>
+                            
+                            func main() { <br>
+                            	fmt.Print(FromTo(1, 10)) <br>
+                            	fmt.Print(FromTo(10, 1)) <br>
+                            	fmt.Print(FromTo(10, 10)) <br>
+                            	fmt.Print(FromTo(100, 10)) <br>
+                            } <br>
+                            </div>
+                            `,
                     proto: "func FromTo(from int, to int) string"
                 },
                 {
