@@ -45,7 +45,7 @@
         }
 
         .red {
-            color : green
+            color: green
         }
 
         .logo {
@@ -300,6 +300,14 @@
             border-radius: 6px;
             border: 1px solid var(--border-color);
         }
+
+        /* Helper for description formatting */
+        .description-content ul, .description-content ol {
+            padding-left: 20px;
+        }
+        .description-content li {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
@@ -519,7 +527,7 @@
 
     <script>
         // Data for all questions with prototypes updated based on your provided solutions
-       const questionsData = {
+        const questionsData = {
             1: [
                 {
                     id: "only1",
@@ -573,8 +581,8 @@
                 {
                     id: "printif",
                     desc: `Write a function that takes a string as an argument and returns the letter G followed by a newline \n if the argument length is more or equal than 3,
-                         otherwise returns Invalid Input followed by a newline \\n.
-                        If it's an empty string return G followed by a newline \\n.`,
+                             otherwise returns Invalid Input followed by a newline \\n.
+                            If it's an empty string return G followed by a newline \\n.`,
                     proto: "func PrintIf(str string) string"
                 },
                 {
@@ -587,15 +595,15 @@
                 {
                     id: "rectperimeter",
                     desc: `Write a function that takes two int's as arguments, representing the length of width and height of a rectangle and returning the perimeter of the rectangle.
-                        If one of the arguments is negative it should return -1`,
+                            If one of the arguments is negative it should return -1`,
                     proto: "func RectPerimeter(w, h int) int"
                 },
                 {
                     id: "retainfirsthalf",
                     desc: `Write a function called RetainFirstHalf() that takes a string as an argument and returns the first half of this string.
-                            If the length of the string is odd, round it down.
-                            If the string is empty, return an empty string.
-                            If the string length is equal to one, return the string.`,
+                                If the length of the string is odd, round it down.
+                                If the string is empty, return an empty string.
+                                If the string length is equal to one, return the string.`,
                     proto: "func RetainFirstHalf(str string) string"
                 }
             ],
@@ -679,86 +687,113 @@
                 {
                     id: "findprevprime",
                     desc: `Write a function that returns the first prime number that is equal or inferior to the int passed as parameter.
-                            <br>If there are no primes inferior to the int passed as parameter the function should return 0.<br><br>
+                            <br>If there are no primes inferior to the int passed as parameter the function should return 0.`,
+                    proto: `func FindPrevPrime(nb int) int`,
+                    usageCode: `package main
 
-                            <br> <b class="red">Here is a possible program to test your function:</b>
-                            <div class="tester">
-                            <br>package main <br>
-                            import "fmt"<br>
-                            
-                            func main() { <br>
-                            	fmt.Println(FindPrevPrime(5))
-                            	<br>fmt.Println(FindPrevPrime(4))<br>
-                            }</div><br>`,
-                    proto: `func FindPrevPrime(nb int) int`
+import "fmt"
+
+func main() {
+    fmt.Println(FindPrevPrime(5))
+    fmt.Println(FindPrevPrime(4))
+}`,
+                    usageOutput: `5
+3`
                 },
                 {
                     id: "fromto",
                     desc: `Write a function that takes two integers and returns a string showing the range of numbers from the first to the second.
                     <ul>
-                            <li>The numbers must be separated by a comma and a space.</li>
-                            <li>If any of the arguments is bigger than 99 or less than 0, the function returns Invalid followed by a newline \n.</li>
-                            <li>Prepend a 0 to any number that is less than 10.</li>
-                            <li>Add a new line \\n at the end of the string.</li></ul>
-                            <br> <b class="red">Here is a possible program to test your function:</b>
-                            <div class="tester">
-                                package main
+                        <li>The numbers must be separated by a comma and a space.</li>
+                        <li>If any of the arguments is bigger than 99 or less than 0, the function returns Invalid followed by a newline \\n.</li>
+                        <li>Prepend a 0 to any number that is less than 10.</li>
+                        <li>Add a new line \\n at the end of the string.</li>
+                    </ul>`,
+                    proto: "func FromTo(from int, to int) string",
+                    usageCode: `package main
 
-                           <br> import ( <br>
-                            	"fmt" <br>
-                            )<br>
-                            
-                            func main() { <br>
-                            	fmt.Print(FromTo(1, 10)) <br>
-                            	fmt.Print(FromTo(10, 1)) <br>
-                            	fmt.Print(FromTo(10, 10)) <br>
-                            	fmt.Print(FromTo(100, 10)) <br>
-                            } <br>
-                            </div>
-                            `,
-                    proto: "func FromTo(from int, to int) string"
+import (
+    "fmt"
+    "piscine"
+)
+
+func main() {
+    fmt.Print(piscine.FromTo(1, 10))
+    fmt.Print(piscine.FromTo(10, 1))
+    fmt.Print(piscine.FromTo(10, 10))
+    fmt.Print(piscine.FromTo(100, 10))
+}`,
+                    usageOutput: `01, 02, 03, 04, 05, 06, 07, 08, 09, 10
+10, 09, 08, 07, 06, 05, 04, 03, 02, 01
+10
+Invalid`
                 },
                 {
                     id: "iscapitalized",
                     desc: `Write a function IsCapitalized() that takes a string as an argument and returns true if each word in the string begins with either an uppercase letter or a non-alphabetic character.
                         <ul>
                             <li>If any of the words begin with a lowercase letter return false.</li>
-                            <li>If the string is empty return false.</li></ul>
-                            <br> <b class="red">Here is a possible program to test your function:</b>
-                            <div class="tester"><br>
-							package main <br>
+                            <li>If the string is empty return false.</li></ul>`,
+                    proto: "func IsCapitalized(s string) bool",
+                    usageCode: `package main
 
-							import ( <br>
-								"fmt" <br>
-							) <br>
+import (
+    "fmt"
+)
 
-							func main() { <br>
-								fmt.Println(IsCapitalized("Hello! How are you?")) <br>
-								fmt.Println(IsCapitalized("Hello How Are You")) <br>
-								fmt.Println(IsCapitalized("Whats 4this 100K?")) <br>
-								fmt.Println(IsCapitalized("Whatsthis4")) <br>
-								fmt.Println(IsCapitalized("!!!!Whatsthis4")) <br>
-								fmt.Println(IsCapitalized("")) <br>
-							} <br>
-							</div>
-                            
-                            
-                            `,
-                    proto: "func IsCapitalized(s string) bool"
+func main() {
+    fmt.Println(IsCapitalized("Hello! How are you?"))
+    fmt.Println(IsCapitalized("Hello How Are You"))
+    fmt.Println(IsCapitalized("Whats 4this 100K?"))
+    fmt.Println(IsCapitalized("Whatsthis4"))
+    fmt.Println(IsCapitalized("!!!!Whatsthis4"))
+    fmt.Println(IsCapitalized(""))
+}`,
+                    usageOutput: `true
+false
+true
+true
+true
+false`
                 },
                 {
                     id: "itoa",
                     desc: `<ul><li>Write a function that simulates the behavior of the Itoa function in Go. 
                         <br>Itoa transforms a number represented as anint in a number represented as a string.</li>
                             <li>For this exercise the handling of the signs + or - does have to be taken into account.</li></ul>`,
-                    proto: "func Itoa(n int) string"
+                    proto: "func Itoa(n int) string",
+                    usageCode: `package main
+
+import (
+    "fmt"
+    "piscine"
+)
+
+func main() {
+    fmt.Println(piscine.Itoa(12345))
+    fmt.Println(piscine.Itoa(0))
+    fmt.Println(piscine.Itoa(-1234))
+    fmt.Println(piscine.Itoa(987654321))
+}`,
+                    usageOutput: `12345
+0
+-1234
+987654321`
                 },
                 {
                     id: "printmemory",
                     desc: `Write a function that takes (arr [10]byte), and displays the memory as in the example.<br>
                         After displaying the memory the function must display all the ASCII graphic characters. The non printable characters must be replaced by a dot.
                         <br>The ASCII graphic characters are any characters intended to be written, printed, or otherwise displayed in a form that can be read by humans, present on the ASCII encoding.`,
-                    proto: "func PrintMemory(arr [10]byte)"
+                    proto: "func PrintMemory(arr [10]byte)",
+                    usageCode: `package main
+
+import "piscine"
+
+func main() {
+    piscine.PrintMemory([10]byte{'h', 'e', 'l', 'l', 'o', 16, 21, '*'})
+}`,
+                    usageOutput: `68 65 6c 6c 6f 10 15 2a 00 00 hello..*..`
                 },
                 {
                     id: "printrevcomb",
@@ -773,7 +808,23 @@
                     <li>Return the output followed by a newline \n. </li>
                     <li>If the string is empty, return a newline \n. </li>
                     <li>If there is no third character, return a newline \n. </li></ul>`,
-                    proto: "func ThirdTimeIsACharm(str string) string"
+                    proto: "func ThirdTimeIsACharm(str string) string",
+                    usageCode: `package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Print(ThirdTimeIsACharm("123456789"))
+    fmt.Print(ThirdTimeIsACharm(""))
+    fmt.Print(ThirdTimeIsACharm("a b c d e f"))
+    fmt.Print(ThirdTimeIsACharm("12"))
+}`,
+                    usageOutput: `369
+
+b e
+`
                 },
                 {
                     id: "weareunique",
@@ -781,113 +832,327 @@
                     <ul>
                             <li>If there is no unique characters return 0.</li>
                             <li>If both strings are empty return -1.</li></ul>`,
-                    proto: "func WeAreUnique(str1, str2 string) int"
+                    proto: "func WeAreUnique(str1, str2 string) int",
+                    usageCode: `package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Println(WeAreUnique("foo", "boo"))
+    fmt.Println(WeAreUnique("", ""))
+    fmt.Println(WeAreUnique("abc", "def"))
+}`,
+                    usageOutput: `2
+-1
+6`
                 },
                 {
                     id: "zipstring",
                     desc: `Write a function that takes a string and returns a new string that replaces every character with the number of duplicates and the character itself, deleting the extra duplications.
                             <ul><li>The letters are from the latin alphabet list only. Any other character, symbols, shall not be tested.</li><ul>`,
-                    proto: "func ZipString(s string) string"
+                    proto: "func ZipString(s string) string",
+                    usageCode: `package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Println(ZipString("YouuungFellllas"))
+    fmt.Println(ZipString("Thee quuick browwn fox juumps over the laaazy dog"))
+    fmt.Println(ZipString("Helloo Therre!"))
+}`,
+                    usageOutput: `1Y1o3u1n1g1F1e4l1a1s
+1T1h2e1 1q2u1i1c1k1 1b1r1o2w1n1 1f1o1x1 1j2u1m1p1s1 1o1v1e1r1 1t1h1e1 1l3a1z1y1 1d1o1g
+1H1e2l2o1 1T1h1e2r1e1!`
                 }
             ],
             5: [
                 {
                     id: "addprimesum",
-                    desc: "Write a program that takes a positive integer as argument and displays the sum of all prime numbers inferior or equal to it followed by a newline. If the number of arguments is not 1, or if the argument is not a positive number, display 0 followed by a newline.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes a positive integer as argument and displays the sum of all prime numbers inferior or equal to it followed by a newline ('\n').
+                        <ul><li>If the number of arguments is different from 1, or if the argument is not a positive number, the program displays 0 followed by a newline.</li></ul>`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+$ go run . 5
+10
+$ go run . 7
+17
+$ go run . -2
+0
+$ go run . 0
+0
+$ go run .
+0
+$ go run . 5 7
+0`
                 },
                 {
                     id: "canjump",
-                    desc: "Write a function that determines if it is possible to reach the last index of the slice starting from the first index. Each element represents the exact length of the jump. You fail if you land on 0 or jump beyond the last index.",
-                    proto: "func CanJump(nums []uint) bool"
+                    desc: `Given an array of non-negative integers representing the number of steps you can take forward from each position, implement the function CanJump() which takes a slice of unsigned integers []uint as input and returns a boolean value. This function should determine if it's possible to reach and stay at the last index of the array starting from the first index, based on the steps you need to advance. Be aware that:
+                        <ol>
+                        <li>Each value represents the exact number of steps you must take forward from that position.</li>
+                        <li>The function should return true if it's possible to reach and stay at the last index without stepping out of the array, and false otherwise.</li>
+                        <li>If the input has only one element, that is the last position in the array so the function will return true but if the array is empty it returns false.</li>
+                        </ol>
+                        Let's take the example array input := []uint{2, 3, 1, 1, 4}.
+                        <pre>
+Position: 0  1  2  3  4
+Steps:    2  3  1  1  4
+          ^
+
+// Starting from position 0, you have 2 steps to move forward. This means you will move to positions 2.
+
+Position: 0  1  2  3  4
+Steps:    2  3  1  1  4
+                ^
+
+// From position 2, you have 1 step, so you will move to position 3.
+
+Position: 0  1  2  3  4
+Steps:    2  3  1  1  4
+                    ^
+
+// Finally, from position 3, you have 1 step to reach the last index at position 4 confirming that it's possible so the output will be "True".
+
+Position: 0  1  2  3  4
+Steps:    2  3  1  1  4
+                      ^</pre>`,
+                    proto: "func CanJump(nums []uint) bool",
+                    usageCode: `package main
+
+import (
+    "fmt"
+    "piscine"
+)
+
+func main() {
+    input1 := []uint{2, 3, 1, 1, 4}
+    fmt.Println(piscine.CanJump(input1))
+
+    input2 := []uint{3, 2, 1, 0, 4}
+    fmt.Println(piscine.CanJump(input2))
+
+    input3 := []uint{0}
+    fmt.Println(piscine.CanJump(input3))
+}`,
+                    usageOutput: `true
+false
+true`
                 },
                 {
                     id: "chunk",
-                    desc: "Write a function called Chunk that splits a slice into sub-slices of length size and displays the result. If size is 0 or less, display a newline. If the slice is empty, display [].",
-                    proto: "func Chunk(slice []int, size int) {\n    // ...\n}"
+                    desc: `Write a function called Chunk that receives as parameters a slice, slice []int, and a number size int. The goal of this function is to chunk a slice into many sub slices where each sub slice has the length of size.
+                        <ol><li>If the size is 0 it should print a newline ('\n').</li></ol>`,
+                    proto: "func Chunk(slice []int, size int) {\n    // ...\n}",
+                    usageCode: `package main
+
+func main() {
+    Chunk([]int{}, 10)
+    Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 0)
+    Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 3)
+    Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 5)
+    Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 4)
+}`,
+                    usageOutput: `[]
+
+[[0 1 2] [3 4 5] [6 7]]
+[[0 1 2 3 4] [5 6 7]]
+[[0 1 2 3] [4 5 6 7]]`
                 },
                 {
                     id: "concatalternate",
-                    desc: "Write a function that returns a new slice with items of two slices alternated. Start with the element of the larger slice (or slice1 if equal). Append remaining elements at the end.",
-                    proto: "func ConcatAlternate(slice1, slice2 []int) []int"
+                    desc: `Write a function ConcatAlternate() that receives two slices of an int as arguments and returns a new slice with the result of the alternated values of each slice.
+                        <ol>
+                        <li>The input slices can be of different lengths.</li>
+                        <li>The new slice should start with an element of the largest slice.</li>
+                        <li>If the slices are of equal length, the new slice should return the elements of the first slice first and then the elements of the second slice.</li>
+                        </ol>`,
+                    proto: "func ConcatAlternate(slice1, slice2 []int) []int",
+                    usageCode: `package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Println(ConcatAlternate([]int{1, 2, 3}, []int{4, 5, 6}))
+    fmt.Println(ConcatAlternate([]int{2, 4, 6, 8, 10}, []int{1, 3, 5, 7, 9, 11}))
+    fmt.Println(ConcatAlternate([]int{1, 2, 3}, []int{4, 5, 6, 7, 8, 9}))
+    fmt.Println(ConcatAlternate([]int{1, 2, 3}, []int{}))
+}`,
+                    usageOutput: `[1 4 2 5 3 6]
+[1 2 3 4 5 6 7 8 9 10 11]
+[4 1 5 2 6 3 7 8 9]
+[1 2 3]`
                 },
                 {
                     id: "concatslice",
-                    desc: "Write a function ConcatSlice that takes two slices of integers as arguments and returns a new slice containing the concatenation of the two slices.",
-                    proto: "func ConcatSlice(slice1, slice2 []int) []int"
+                    desc: "Write a function ConcatSlice() that takes two slices of integers as arguments and returns the concatenation of the two slices.",
+                    proto: "func ConcatSlice(slice1, slice2 []int) []int",
+                    usageCode: `package main
+
+import (
+    "fmt"
+    "piscine"
+)
+
+func main() {
+    fmt.Println(piscine.ConcatSlice([]int{1, 2, 3}, []int{4, 5, 6}))
+    fmt.Println(piscine.ConcatSlice([]int{}, []int{4, 5, 6, 7, 8, 9}))
+    fmt.Println(piscine.ConcatSlice([]int{1, 2, 3}, []int{}))
+}`,
+                    usageOutput: `[1 2 3 4 5 6]
+[4 5 6 7 8 9]
+[1 2 3]`
                 },
                 {
                     id: "fprime",
-                    desc: "Write a program that takes a positive integer and displays its prime factors separated by * and followed by a newline. If the argument is invalid or <= 1, display a newline.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes a positive int and displays its prime factors, followed by a newline ('\n').
+                        <ol>
+                        <li>Factors must be displayed in ascending order and separated by *.</li>
+                        <li>If the number of arguments is different from 1, if the argument is invalid, or if the integer does not have a prime factor, the program displays nothing.</li>
+                        </ol>`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage 
+$ go run . 225225
+3*3*5*5*7*11*13
+$ go run . 8333325
+3*3*5*5*7*11*13*37
+$ go run . 9539
+9539
+$ go run . 804577
+804577
+$ go run . 42
+2*3*7
+$ go run . a
+$ go run . 0
+$ go run . 1
+$`
                 },
                 {
                     id: "hiddenp",
                     desc: `
-                            Write a program named hiddenp that takes two string arguments and checks whether the first string is hidden in the second one.
+                            Write a program named hiddenp that takes two strings as arguments. The program should check if the first string s1 is hidden in the second s2. s1 is considered hidden in s2 if it is possible to find each character from s1 in s2, in the same order as they appear in s1, but not necessarily consecutively.
+                            <ol>
+                            <li>If s1 is hidden in s2, the program should display 1 followed by a newline.</li>
+                            <li>If s1 is not hidden in s2, the program should display 0 followed by a newline.</li>
+                            <li>If s1 is an empty string, it is considered hidden in any string.</li>
+                            <li>If the number of arguments is different from 2, the program should display nothing.</li>
+                            </ol>`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage 
 
-                            A string is hidden in another one if it is possible to find the characters of the first one in the second one, in the same order.
-
-                            If the first string is hidden in the second one, the program prints 1 followed by a newline.
-
-                            If it is not, the program prints 0 followed by a newline.
-
-                            If the number of arguments is not 2, the program prints nothing.`,
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+$ go run . "fgex.;" "tyf34gdgf;'ektufjhgdgex.;.;rtjynur6" | cat -e
+1$
+$ go run . "abc" "2altrb53c.sse" | cat -e
+1$
+$ go run . "abc" "btarc" | cat -e
+0$
+$ go run . "DD" "DABC" | cat -e
+0$
+$ go run .
+$`
                 },
                 {
                     id: "inter",
-                    desc: "Write a program that takes two string arguments and displays all of the characters that appear in both strings. The display order must be based on the order of characters in the first string. If a character appears multiple times in the first string, it must only be displayed once. If the number of arguments is not 2, the program displays nothing (or just a newline).",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes two string and displays, without doubles, the characters that appear in both string, in the order they appear in the first one.
+                        <ol>
+                        <li>The display will be followed by a newline ('\n').</li>
+                        <li>If the number of arguments is different from 2, the program displays nothing.</li>
+                        </ol>`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage 
+$ go run . "padinton" "paqefwtdjetyiytjneytjoeyjnejeyj"
+padinto
+$ go run . ddf6vewg64f  twthgdwthdwfteewhrtag6h4ffdhsd
+df6ewg4
+$`
                 },
                 {
                     id: "reversestrcap",
-                    desc: `Write a program that takes one or more strings as arguments and displays them with exactly one space between each string.
-                            In each string, the last letter of each word must be in uppercase.
-
-                            All other letters must be in lowercase.
-
-                            A word is defined as a section of alphanumeric characters.
-
-                            If the number of arguments is 0, the program displays nothing.`,
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes one or more arguments and that, for each argument, puts the last letter of each word in uppercase and the rest in lowercase. It displays the result followed by a newline ('\n').
+                        If there are no argument, the program displays nothing.`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+$ go run . "First SMALL TesT" | cat -e
+firsT smalL tesT$
+$ go run . "SEconD Test IS a LItTLE EasIEr" "bEwaRe IT'S NoT HARd WhEN " " Go a dernier 0123456789 for the road e" | cat -e
+seconD tesT iS A littlE easieR$
+bewarE it'S noT harD wheN $
+ gO A dernieR 0123456789 foR thE roaD E$
+$ go run .
+$`
                 },
                 {
                     id: "saveandmiss",
-                    desc: `Write a function called SaveAndMiss that takes a string and an int as arguments.
+                    desc: `Write a function called SaveAndMiss() that takes a string and an int as an argument. The function should move through the string in sets determined by the int, saving the first set, omitting the second, saving the third, and so on, in a 'save' and 'miss' fashion until the end of the string is reached. Return a string containing the saved characters.
+                        If the int is 0 or a negative number return the original string.`,
+                    proto: "func SaveAndMiss(arg string, num int) string",
+                    usageCode: `package main
 
-                            The function should return a string made up of:
+import (
+    "fmt"
+    "piscine"
+)
 
-                            The first num characters of the string.
+func main() {
+    fmt.Println(piscine.SaveAndMiss("123456789", 3))
+    fmt.Println(piscine.SaveAndMiss("abcdefghijklmnopqrstuvwyz", 3))
+    fmt.Println(piscine.SaveAndMiss("", 3))
+    fmt.Println(piscine.SaveAndMiss("hello you all ! ", 0))
+    fmt.Println(piscine.SaveAndMiss("what is your name?", 0))
+    fmt.Println(piscine.SaveAndMiss("go Exercise Save and Miss", -5))
+}`,
+                    usageOutput: `123789
+abcghimnostuz
 
-                            Then it should miss (skip) the next num characters.
-
-                            Then save the next num characters, and so on.
-
-                            If num is negative or 0, return the string as is.
-
-                            If the string is empty, return an empty string.`,
-                    proto: "func SaveAndMiss(arg string, num int) string"
+hello you all ! 
+what is your name?
+go Exercise Save and Miss`
                 },
                 {
                     id: "union",
-                    desc: `Write a program that takes two strings as arguments and displays, without doubles, the characters that appear in either one of the strings.
-
-                            It displays the characters in the order of their first occurrence.
-
-                            If the number of arguments is not 2, the program displays a newline (\n).`,
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes two string and displays, without doubles, the characters that appear in either one of the string.
+                        The display will be in the same order that the characters appear on the command line and will be followed by a newline ('\n').
+                        If the number of arguments is different from 2, then the program displays a newline ('\n').`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+$ go run . zpadinton paqefwtdjetyiytjneytjoeyjnejeyj | cat -e
+zpadintoqefwjy$
+$
+$ go run . ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd | cat -e
+df6vewg4thras$
+$
+$ go run . rien "cette phrase ne cache rien" | cat -e
+rienct phas$
+$
+$ go run . | cat -e
+$
+$ go run . rien | cat -e
+$`
                 },
                 {
                     id: "wdmatch",
-                    desc: `Write a program that takes two string arguments and checks whether it is possible to write the first string with characters from the second string, while respecting the order in which these characters appear in the second string.
+                    desc: `Write a program that takes two string and checks whether it is possible to write the first string with characters from the second string. This rewrite must respect the order in which these characters appear in the second string.
 
-                            If it is possible, the program displays the string, followed by a newline.
+                        If it is possible, the program displays the string followed by a newline ('\n'), otherwise it simply displays nothing.
 
-                            If it is not possible, the program displays nothing.
-
-                            If the number of arguments is not 2, the program displays a newline.`,
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                        If the number of arguments is different from 2, the program displays nothing.`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+$ go run . 123 123
+123
+$ go run . faya fgvvfdxcacpolhyghbreda
+faya
+$ go run . faya fgvvfdxcacpolhyghbred
+$ go run . error rrerrrfiiljdfxjyuifrrvcoojh
+$ go run . "quarante deux" "qfqfsudf arzgsayns tsregfdgs sjytdekuoixq "
+quarante deux
+$ go run .
+$`
                 }
             ],
             6: [
@@ -1042,16 +1307,48 @@
                 const item = document.createElement('div');
                 item.className = 'accordion-item';
 
+                // Dynamic Usage Section Generation
+                let usageSection = '';
+                
+                if (q.usageCode) {
+                    if (q.usageCode.startsWith("usage")) {
+                         // Case for CLI examples provided as raw text
+                         usageSection = `
+                            <h3>Usage Example</h3>
+                            <pre style="background: #000; border: 1px solid #30363d;">${q.usageCode}</pre>
+                        `;
+                    } else {
+                        // Case for Go functions with main code provided
+                        usageSection = `
+                            <h3>Main for Testing</h3>
+                            <pre><code class="language-go">${q.usageCode}</code></pre>
+                        `;
+                        
+                        // Only add output if it exists and we aren't using the CLI example format
+                        if (q.usageOutput) {
+                            usageSection += `
+                                <h3>Expected Output</h3>
+                                <pre style="background: #000; border: 1px solid #30363d;">${q.usageOutput}</pre>
+                            `;
+                        }
+                    }
+                } else {
+                    // Fallback to the generic message if no test code is provided
+                    usageSection = `
+                        <h3>Usage Example</h3>
+                        <pre>$ go run . 
+(Output depends on specific logic...)</pre>
+                    `;
+                }
+
                 const fullSubject = `
                     <h3>Instructions</h3>
-                    <p>${q.desc}</p>
+                    <div class="description-content">${q.desc}</div>
                     
                     <h3>Expected Function / Program</h3>
                     <pre><code class="language-go">${q.proto}</code></pre>
                     
-                    <h3>Usage Example</h3>
-                    <pre>$ go run . 
-(Output depends on specific logic...)</pre>
+                    ${usageSection}
                 `;
 
                 item.innerHTML = `
