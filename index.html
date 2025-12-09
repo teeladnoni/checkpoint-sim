@@ -308,6 +308,22 @@
         .description-content li {
             margin-bottom: 5px;
         }
+
+        /* Roman table style */
+        .roman-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .roman-table th, .roman-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: center;
+        }
+        .roman-table th {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
     </style>
 </head>
 
@@ -697,8 +713,8 @@ func main() {
     fmt.Println(FindPrevPrime(5))
     fmt.Println(FindPrevPrime(4))
 }`,
-                    usageOutput: `5
-3`
+                    usageOutput: `5$
+3$`
                 },
                 {
                     id: "fromto",
@@ -723,10 +739,10 @@ func main() {
     fmt.Print(piscine.FromTo(10, 10))
     fmt.Print(piscine.FromTo(100, 10))
 }`,
-                    usageOutput: `01, 02, 03, 04, 05, 06, 07, 08, 09, 10
-10, 09, 08, 07, 06, 05, 04, 03, 02, 01
-10
-Invalid`
+                    usageOutput: `01, 02, 03, 04, 05, 06, 07, 08, 09, 10$
+10, 09, 08, 07, 06, 05, 04, 03, 02, 01$
+10$
+Invalid$`
                 },
                 {
                     id: "iscapitalized",
@@ -749,12 +765,12 @@ func main() {
     fmt.Println(IsCapitalized("!!!!Whatsthis4"))
     fmt.Println(IsCapitalized(""))
 }`,
-                    usageOutput: `true
-false
-true
-true
-true
-false`
+                    usageOutput: `true$
+false$
+true$
+true$
+true$
+false$`
                 },
                 {
                     id: "itoa",
@@ -775,10 +791,10 @@ func main() {
     fmt.Println(piscine.Itoa(-1234))
     fmt.Println(piscine.Itoa(987654321))
 }`,
-                    usageOutput: `12345
-0
--1234
-987654321`
+                    usageOutput: `12345$
+0$
+-1234$
+987654321$`
                 },
                 {
                     id: "printmemory",
@@ -793,7 +809,7 @@ import "piscine"
 func main() {
     piscine.PrintMemory([10]byte{'h', 'e', 'l', 'l', 'o', 16, 21, '*'})
 }`,
-                    usageOutput: `68 65 6c 6c 6f 10 15 2a 00 00 hello..*..`
+                    usageOutput: `68 65 6c 6c 6f 10 15 2a 00 00 hello..*..$`
                 },
                 {
                     id: "printrevcomb",
@@ -821,10 +837,10 @@ func main() {
     fmt.Print(ThirdTimeIsACharm("a b c d e f"))
     fmt.Print(ThirdTimeIsACharm("12"))
 }`,
-                    usageOutput: `369
-
-b e
-`
+                    usageOutput: `369$
+$
+b e$
+$`
                 },
                 {
                     id: "weareunique",
@@ -844,9 +860,9 @@ func main() {
     fmt.Println(WeAreUnique("", ""))
     fmt.Println(WeAreUnique("abc", "def"))
 }`,
-                    usageOutput: `2
--1
-6`
+                    usageOutput: `2$
+-1$
+6$`
                 },
                 {
                     id: "zipstring",
@@ -864,9 +880,9 @@ func main() {
     fmt.Println(ZipString("Thee quuick browwn fox juumps over the laaazy dog"))
     fmt.Println(ZipString("Helloo Therre!"))
 }`,
-                    usageOutput: `1Y1o3u1n1g1F1e4l1a1s
-1T1h2e1 1q2u1i1c1k1 1b1r1o2w1n1 1f1o1x1 1j2u1m1p1s1 1o1v1e1r1 1t1h1e1 1l3a1z1y1 1d1o1g
-1H1e2l2o1 1T1h1e2r1e1!`
+                    usageOutput: `1Y1o3u1n1g1F1e4l1a1s$
+1T1h2e1 1q2u1i1c1k1 1b1r1o2w1n1 1f1o1x1 1j2u1m1p1s1 1o1v1e1r1 1t1h1e1 1l3a1z1y1 1d1o1g$
+1H1e2l2o1 1T1h1e2r1e1!$`
                 }
             ],
             5: [
@@ -887,7 +903,13 @@ $ go run . 0
 $ go run .
 0
 $ go run . 5 7
-0`
+0`,
+                    usageOutput: `10$
+17$
+0$
+0$
+0$
+0$`
                 },
                 {
                     id: "canjump",
@@ -938,9 +960,9 @@ func main() {
     input3 := []uint{0}
     fmt.Println(piscine.CanJump(input3))
 }`,
-                    usageOutput: `true
-false
-true`
+                    usageOutput: `true$
+false$
+true$`
                 },
                 {
                     id: "chunk",
@@ -956,11 +978,11 @@ func main() {
     Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 5)
     Chunk([]int{0, 1, 2, 3, 4, 5, 6, 7}, 4)
 }`,
-                    usageOutput: `[]
-
-[[0 1 2] [3 4 5] [6 7]]
-[[0 1 2 3 4] [5 6 7]]
-[[0 1 2 3] [4 5 6 7]]`
+                    usageOutput: `[]$
+$
+[[0 1 2] [3 4 5] [6 7]]$
+[[0 1 2 3 4] [5 6 7]]$
+[[0 1 2 3] [4 5 6 7]]$`
                 },
                 {
                     id: "concatalternate",
@@ -983,10 +1005,10 @@ func main() {
     fmt.Println(ConcatAlternate([]int{1, 2, 3}, []int{4, 5, 6, 7, 8, 9}))
     fmt.Println(ConcatAlternate([]int{1, 2, 3}, []int{}))
 }`,
-                    usageOutput: `[1 4 2 5 3 6]
-[1 2 3 4 5 6 7 8 9 10 11]
-[4 1 5 2 6 3 7 8 9]
-[1 2 3]`
+                    usageOutput: `[1 4 2 5 3 6]$
+[1 2 3 4 5 6 7 8 9 10 11]$
+[4 1 5 2 6 3 7 8 9]$
+[1 2 3]$`
                 },
                 {
                     id: "concatslice",
@@ -1004,9 +1026,9 @@ func main() {
     fmt.Println(piscine.ConcatSlice([]int{}, []int{4, 5, 6, 7, 8, 9}))
     fmt.Println(piscine.ConcatSlice([]int{1, 2, 3}, []int{}))
 }`,
-                    usageOutput: `[1 2 3 4 5 6]
-[4 5 6 7 8 9]
-[1 2 3]`
+                    usageOutput: `[1 2 3 4 5 6]$
+[4 5 6 7 8 9]$
+[1 2 3]$`
                 },
                 {
                     id: "fprime",
@@ -1030,6 +1052,14 @@ $ go run . 42
 $ go run . a
 $ go run . 0
 $ go run . 1
+$`,
+                    usageOutput: `3*3*5*5*7*11*13$
+3*3*5*5*7*11*13*37$
+9539$
+804577$
+2*3*7$
+$
+$
 $`
                 },
                 {
@@ -1054,6 +1084,11 @@ $ go run . "abc" "btarc" | cat -e
 $ go run . "DD" "DABC" | cat -e
 0$
 $ go run .
+$`,
+                    usageOutput: `1$
+1$
+0$
+0$
 $`
                 },
                 {
@@ -1069,6 +1104,9 @@ $ go run . "padinton" "paqefwtdjetyiytjneytjoeyjnejeyj"
 padinto
 $ go run . ddf6vewg64f  twthgdwthdwfteewhrtag6h4ffdhsd
 df6ewg4
+$`,
+                    usageOutput: `padinto$
+df6ewg4$
 $`
                 },
                 {
@@ -1084,6 +1122,11 @@ seconD tesT iS A littlE easieR$
 bewarE it'S noT harD wheN $
  gO A dernieR 0123456789 foR thE roaD E$
 $ go run .
+$`,
+                    usageOutput: `firsT smalL tesT$
+seconD tesT iS A littlE easieR$
+bewarE it'S noT harD wheN $
+ gO A dernieR 0123456789 foR thE roaD E$
 $`
                 },
                 {
@@ -1106,12 +1149,12 @@ func main() {
     fmt.Println(piscine.SaveAndMiss("what is your name?", 0))
     fmt.Println(piscine.SaveAndMiss("go Exercise Save and Miss", -5))
 }`,
-                    usageOutput: `123789
-abcghimnostuz
-
-hello you all ! 
-what is your name?
-go Exercise Save and Miss`
+                    usageOutput: `123789$
+abcghimnostuz$
+$
+hello you all ! $
+what is your name?$
+go Exercise Save and Miss$`
                 },
                 {
                     id: "union",
@@ -1132,6 +1175,14 @@ $
 $ go run . | cat -e
 $
 $ go run . rien | cat -e
+$`,
+                    usageOutput: `zpadintoqefwjy$
+$
+df6vewg4thras$
+$
+rienct phas$
+$
+$
 $`
                 },
                 {
@@ -1152,6 +1203,13 @@ $ go run . error rrerrrfiiljdfxjyuifrrvcoojh
 $ go run . "quarante deux" "qfqfsudf arzgsayns tsregfdgs sjytdekuoixq "
 quarante deux
 $ go run .
+$`,
+                    usageOutput: `123$
+faya$
+$
+$
+quarante deux$
+$
 $`
                 }
             ],
@@ -1177,10 +1235,10 @@ func main() {
     fmt.Print(piscine.FifthAndSkip("This is a short sentence"))
     fmt.Print(piscine.FifthAndSkip("1234"))
 }`,
-                    usageOutput: `abcde ghijk mnopq stuwx z
-Thisi ashor tsent ence
-Invalid Input
-`
+                    usageOutput: `abcde ghijk mnopq stuwx z$
+Thisi ashor tsent ence$
+Invalid Input$
+$`
                 },
                 {
                     id: "notdecimal",
@@ -1207,15 +1265,15 @@ func main() {
     fmt.Print(NotDecimal("-19.525856"))
     fmt.Print(NotDecimal("1952"))
 }`,
-                    usageOutput: `1
-1742
-1255
-120525856
--0.0f00d00
-
--19525856
-1952
-`
+                    usageOutput: `1$
+1742$
+1255$
+120525856$
+-0.0f00d00$
+$
+-19525856$
+1952$
+$`
                 },
                 {
                     id: "revconcatalternate",
@@ -1239,10 +1297,10 @@ func main() {
     fmt.Println(piscine.RevConcatAlternate([]int{1, 2, 3, 9, 8}, []int{4, 5}))
     fmt.Println(piscine.RevConcatAlternate([]int{1, 2, 3}, []int{}))
 }`,
-                    usageOutput: `[3 6 2 5 1 4]
-[9 3 8 2 7 1 6 5 4]
-[8 5 9 4 3 2 1]
-[3 2 1]`
+                    usageOutput: `[3 6 2 5 1 4]$
+[9 3 8 2 7 1 6 5 4]$
+[8 5 9 4 3 2 1]$
+[3 2 1]$`
                 },
                 {
                     id: "slice",
@@ -1265,11 +1323,11 @@ func main(){
     fmt.Printf("%#v\n", piscine.Slice(a, -2, -1))
     fmt.Printf("%#v\n", piscine.Slice(a, 2, 0))
 }`,
-                    usageOutput: `[]string{"algorithm", "ascii", "package", "golang"}
-[]string{"ascii", "package"}
-[]string{"ascii", "package", "golang"}
-[]string{"package"}
-[]string(nil)`
+                    usageOutput: `[]string{"algorithm", "ascii", "package", "golang"}$
+[]string{"ascii", "package"}$
+[]string{"ascii", "package", "golang"}$
+[]string{"package"}$
+[]string(nil)$`
                 }
             ],
             7: [
@@ -1304,6 +1362,15 @@ $ go run . "[1, 2, 3, 4" "5"
 Invalid input.
 $ go run . "1, 2, 3, 4" "5"
 Invalid input.
+$`,
+                    usageOutput: `Pairs with sum 6: [[0 4] [1 3]]$
+Pairs with sum 1: [[0 1] [2 3]]$
+No pairs found.$
+Pairs with sum -5: [[0 3] [1 2]]$
+Invalid target sum.$
+Invalid number: p$
+Invalid input.$
+Invalid input.$
 $`
                 },
                 {
@@ -1324,6 +1391,11 @@ $ go run . "he stared at the mountain"
 mountain the at stared he
 $ go run . "" | cat-e
 $
+$`,
+                    usageOutput: `indifference of that precedes contempt of time the$
+abcdefghijklm$
+mountain the at stared he$
+$
 $`
                 },
                 {
@@ -1343,6 +1415,11 @@ there be light Let
 $ go run . "     AkjhZ zLKIJz , 23y"
 zLKIJz , 23y AkjhZ
 $ go run . | cat -e
+$
+$`,
+                    usageOutput: `abc$
+there be light Let$
+zLKIJz , 23y AkjhZ$
 $
 $`
                 },
@@ -1368,57 +1445,295 @@ func main() {
     fmt.Print(piscine.WordFlip("     "))
     fmt.Print(piscine.WordFlip(" hello  all  of  you! "))
 }`,
-                    usageOutput: `last second First
-Invalid Output
-Invalid Output
-you! of all hello
+                    usageOutput: `last second First$
+Invalid Output$
+Invalid Output$
+you! of all hello$
 `
                 }
             ],
             8: [
                 {
                     id: "itoabase",
-                    desc: "Write a function that converts an integer value to a string using the specified base (binary, octal, hex, etc).",
-                    proto: "func ItoaBase(value, base int) string"
+                    desc: `Write a function that:
+                        <ol>
+                        <li>converts an int value to a string using the specified base in the argument</li>
+                        <li>and that returns this string</li>
+                        </ol>
+                        The base is expressed as an int, from 2 to 16. The characters comprising the base are the digits from 0 to 9, followed by uppercase letters from A to F.
+                        For example, the base 4 would be the equivalent of "0123" and the base 16 would be the equivalent of "0123456789ABCDEF".
+                        If the value is negative, the resulting string has to be preceded by a minus sign -.
+                        Only valid inputs will be tested.`,
+                    proto: "func ItoaBase(value, base int) string",
+                    usageCode: `package main
+
+import (
+    "fmt"
+    "piscine"
+)
+
+func main() {
+    fmt.Println(piscine.ItoaBase(10, 2))
+    fmt.Println(piscine.ItoaBase(255, 16))
+    fmt.Println(piscine.ItoaBase(-10, 2))
+    fmt.Println(piscine.ItoaBase(15, 4))
+}`,
+                    usageOutput: `1010$
+FF$
+-1010$
+33$`
                 },
                 {
                     id: "options",
-                    desc: "Write a program that accepts command-line arguments (like '-abc') and sets bits in a 32-bit integer corresponding to the letters 'a'-'z'. Print the result as a binary string.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes an undefined number of arguments which could be considered as options and writes on the standard output a representation of those options as groups of bytes followed by a newline ('\n').
+                        <ol>
+                        <li>An option is an argument that begins with a - and that can have multiple characters which could be : -abcdefghijklmnopqrstuvwxyz</li>
+                        <li>All options are stocked in a single int and each options represents a bit of that int, and should be stocked like this :<br>
+                        - 00000000 00000000 00000000 00000000<br>
+                        - ******zy xwvutsrq ponmlkji hgfedcba</li>
+                        <li>Launching the program without arguments or with the -h flag activated must print all the valid options on the standard output.</li>
+                        <li>Please note the -h flag has priority over the others flags when it is called first in one of the arguments.</li>
+                        <li>A wrong option must print Invalid Option followed by a newline.</li>
+                        </ol>`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+
+$ go run . | cat -e
+options: abcdefghijklmnopqrstuvwxyz$
+$ go run . -abc -ijk | cat -e
+00000000 00000000 00000111 00000111$
+$ go run . -z | cat -e
+00000010 00000000 00000000 00000000$
+$ go run . -abc -hijk | cat -e
+options: abcdefghijklmnopqrstuvwxyz$
+$ go run . -h | cat -e
+options: abcdefghijklmnopqrstuvwxyz$
+$ go run . -zh | cat -e
+00000010 00000000 00000000 10000000$
+$ go run . -z -h | cat -e
+options: abcdefghijklmnopqrstuvwxyz$
+$ go run . -hhhhhh | cat -e
+options: abcdefghijklmnopqrstuvwxyz$
+$ go run . -eeeeee | cat -e
+00000000 00000000 00000000 00010000$
+$ go run . -% | cat -e
+Invalid Option$
+$ go run . - | cat -e
+Invalid Option$
+$`,
+                    usageOutput: `options: abcdefghijklmnopqrstuvwxyz$
+00000000 00000000 00000111 00000111$
+00000010 00000000 00000000 00000000$
+options: abcdefghijklmnopqrstuvwxyz$
+options: abcdefghijklmnopqrstuvwxyz$
+00000010 00000000 00000000 10000000$
+options: abcdefghijklmnopqrstuvwxyz$
+options: abcdefghijklmnopqrstuvwxyz$
+00000000 00000000 00000000 00010000$
+Invalid Option$
+Invalid Option$
+$`
                 },
                 {
                     id: "piglatin",
-                    desc: "Write a program that transforms a string into Pig Latin. If a word starts with a vowel, add 'ay'. If it starts with consonants, move them to the end and add 'ay'.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that transforms a string passed as argument in its Pig Latin version.
+                        The rules used by Pig Latin are as follows:
+                        <ol>
+                        <li>If a word begins with a vowel, just add "ay" to the end.</li>
+                        <li>If it begins with a consonant, then we take all consonants before the first vowel and we put them on the end of the word and add "ay" at the end.</li>
+                        <li>Only the latin vowels will be considered as vowel(aeiou).</li>
+                        </ol>
+                        If the word has no vowels, the program should print "No vowels".
+                        If the number of arguments is different from one, the program prints nothing.`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+$ go run .
+$ go run . pig | cat -e
+igpay$
+$ go run . Is | cat -e
+Isay$
+$ go run . crunch | cat -e
+unchcray$
+$ go run . crnch | cat -e
+No vowels$
+$ go run . something else | cat -e
+$`,
+                    usageOutput: `igpay$
+Isay$
+unchcray$
+No vowels$
+$`
                 },
                 {
                     id: "romannumbers",
-                    desc: "Write a program that converts a number to its Roman numeral representation (e.g., 20 -> XX).",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program called rn. The objective is to convert a number, given as an argument, into a roman number and print it with its roman number calculation.
+                        The program should have a limit of 4000. In case of an invalid number, for example "hello" or 0 the program should print ERROR: cannot convert to roman digit.
+                        <table class="roman-table">
+                        <tr><th>Value</th><th>Symbol</th><th>Value</th><th>Symbol</th><th>Value</th><th>Symbol</th></tr>
+                        <tr><td>1</td><td>I</td><td>11</td><td>XI</td><td>21</td><td>XXI</td></tr>
+                        <tr><td>2</td><td>II</td><td>12</td><td>XII</td><td>22</td><td>XXII</td></tr>
+                        <tr><td>3</td><td>III</td><td>13</td><td>XIII</td><td>23</td><td>XXIII</td></tr>
+                        <tr><td>4</td><td>IV</td><td>14</td><td>XIV</td><td>24</td><td>XXIV</td></tr>
+                        <tr><td>5</td><td>V</td><td>15</td><td>XV</td><td>25</td><td>XXV</td></tr>
+                        <tr><td>6</td><td>VI</td><td>16</td><td>XVI</td><td>26</td><td>XXVI</td></tr>
+                        <tr><td>7</td><td>VII</td><td>17</td><td>XVII</td><td>27</td><td>XXVII</td></tr>
+                        <tr><td>8</td><td>VIII</td><td>18</td><td>XVIII</td><td>28</td><td>XXVIII</td></tr>
+                        <tr><td>9</td><td>IX</td><td>19</td><td>XIX</td><td>29</td><td>XXIX</td></tr>
+                        <tr><td>10</td><td>X</td><td>20</td><td>XX</td><td>30</td><td>XXX</td></tr>
+                        </table>`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+$ go run . hello
+ERROR: cannot convert to roman digit
+$ go run . 123
+C+X+X+I+I+I
+CXXIII
+$ go run . 999
+(M-C)+(C-X)+(X-I)
+CMXCIX
+$ go run . 3999
+M+M+M+(M-C)+(C-X)+(X-I)
+MMMCMXCIX
+$ go run . 4000
+ERROR: cannot convert to roman digit
+$`,
+                    usageOutput: `ERROR: cannot convert to roman digit$
+C+X+X+I+I+I$
+CXXIII$
+(M-C)+(C-X)+(X-I)$
+CMXCIX$
+M+M+M+(M-C)+(C-X)+(X-I)$
+MMMCMXCIX$
+ERROR: cannot convert to roman digit$
+$`
                 }
             ],
             9: [
                 {
                     id: "brackets",
-                    desc: "Write a program that checks if brackets '(', ')', '[', ']', '{', '}' are correctly nested and closed in the arguments.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes an undefined number of string in arguments. For each argument, if the expression is correctly bracketed, the program prints on the standard output OK followed by a newline ('\n'), otherwise it prints Error followed by a newline.
+                        Symbols considered as brackets are parentheses ( and ), square brackets [ and ] and curly braces { and }. Every other symbols are simply ignored.
+                        An opening bracket must always be closed by the good closing bracket in the correct order. A string which does not contain any bracket is considered as a correctly bracketed string.
+                        If there is no argument, the program must print nothing.`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+
+$ go run . '(johndoe)' | cat -e
+OK$
+$ go run . '([)]' | cat -e
+Error$
+$ go run . '' '{[(0 + 0)(1 + 1)](3*(-1)){()}}' | cat -e
+OK$
+OK$
+$ go run .
+$`,
+                    usageOutput: `OK$
+Error$
+OK$
+OK$
+$`
                 },
                 {
                     id: "rpncalc",
-                    desc: "Write a program that evaluates mathematical expressions given in Reverse Polish Notation (RPN).",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes a string which contains an equation written in Reverse Polish Notation (RPN) as its first argument, that evaluates the equation, and that prints the result on the standard output followed by a newline ('\n').
+                        Reverse Polish Notation is a mathematical notation in which every operator follows all of its operands. In RPN, every operator encountered evaluates the previous 2 operands, and the result of this operation then becomes the first of the two operands for the subsequent operator. Operands and operators must be spaced by at least one space.
+                        The following operators must be implemented : +, -, *, /, and %.
+                        If the string is not valid or if there is not exactly one argument, Error must be printed on the standard output followed by a newline. If the string has extra spaces it is still considered valid.`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `Usage
+
+$ go run . "1 2 * 3 * 4 +" | cat -e
+10$
+$ go run . "1 2 3 4 +" | cat -e
+Error$
+$ go run . | cat -e
+Error$
+$ go run . "     1       3 * 2 -" | cat -e
+1
+$ go run . "     1       3 * ksd 2 -" | cat -e
+Error$
+$`,
+                    usageOutput: `10$
+Error$
+Error$
+1$
+Error$
+$`
                 }
             ],
             10: [
                 {
                     id: "brainfuck",
-                    desc: "Write a Brainfuck interpreter. It should simulate the standard Brainfuck language commands: > < + - . , [ ].",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a Brainfuck interpreter program.
+                        The source code will be given as the first parameter, and will always be valid with fewer than 4096 operations.
+                        Your Brainfuck interpreter will consist of an array of 2048 bytes, all initialized to 0, with a pointer to the first byte.
+                        Every operator consists of a single character:
+                        1. >: increment the pointer.
+                        2. <: decrement the pointer.
+                        3. +: increment the pointed byte.
+                        4. -: decrement the pointed byte.
+                        5. .: print the pointed byte to standard output.
+                        6. [: If the byte at the current pointer is 0, skip forward to the command after the matching ].
+                        7. ]: If the byte at the current pointer is not 0, jump back to the command after the matching [.
+                        8. Any other character is treated as a comment and ignored.`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+$ go run . "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>." | cat -e
+Hello World!$
+$ go run . "+++++[>++++[>++++H>+++++i<<-]>>>++\n<<<<-]>>--------.>+++++.>." | cat -e
+Hi$
+$ go run . "++++++++++[>++++++++++>++++++++++>++++++++++<<<-]>---.>--.>-.>++++++++++." | cat -e
+abc$
+$ go run .
+$`,
+                    usageOutput: `Hello World!$
+Hi$
+abc$
+$`
                 },
                 {
                     id: "grouping",
-                    desc: "Write a program that finds and displays matches for a specific pattern (typically involving pipes '|' and brackets '()') in a string.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that receives two strings and replicates the use of brackets in regular expressions. Brackets in regular expressions returns the words that contain the expression inside of it.
+                        The program should handle the "|" operator, which searches for both strings on each side of the operator.
+                        The output of the program should be, the results of the regular expression, numbered and displayed by the order of appearance in the string.
+                        If the number of arguments is different from 2, if the regular expression is not valid, if the last argument is empty or if there are no matches, the program should print nothing.`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+$ go run . "(a)" "I'm heavy, jumpsuit is on steady, Lighter when I'm lower, higher when I'm heavy"
+1: heavy
+2: steady
+3: heavy
+$ go run . "(e|n)" "I currently have 4 windows opened up… and I don’t know why."
+1: currently
+2: currently
+3: have
+4: windows
+5: opened
+6: opened
+7: and
+8: don’t
+9: know
+$ go run . "(hi)" "He swore he just saw his sushi move."
+1: his
+2: sushi
+$ go run . "(s)" ""
+$ go run . "i" "Something in the air"
+$`,
+                    usageOutput: `1: heavy$
+2: steady$
+3: heavy$
+1: currently$
+2: currently$
+3: have$
+4: windows$
+5: opened$
+6: opened$
+7: and$
+8: don’t$
+9: know$
+1: his$
+2: sushi$
+$`
                 }
             ]
         }
@@ -1447,7 +1762,7 @@ you! of all hello
                 let usageSection = '';
                 
                 if (q.usageCode) {
-                    if (q.usageCode.startsWith("usage")) {
+                    if (q.usageCode.toLowerCase().startsWith("usage")) {
                          // Case for CLI examples provided as raw text
                          usageSection = `
                             <h3>Usage Example</h3>
@@ -1459,14 +1774,14 @@ you! of all hello
                             <h3>Main for Testing</h3>
                             <pre><code class="language-go">${q.usageCode}</code></pre>
                         `;
-                        
-                        // Only add output if it exists and we aren't using the CLI example format
-                        if (q.usageOutput) {
-                            usageSection += `
-                                <h3>Expected Output</h3>
-                                <pre style="background: #000; border: 1px solid #30363d;">${q.usageOutput}</pre>
-                            `;
-                        }
+                    }
+
+                    // Only add output if it exists
+                    if (q.usageOutput) {
+                        usageSection += `
+                            <h3>Expected Output</h3>
+                            <pre style="background: #000; border: 1px solid #30363d;">${q.usageOutput}</pre>
+                        `;
                     }
                 } else {
                     // Fallback to the generic message if no test code is provided
