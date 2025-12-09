@@ -511,7 +511,7 @@
 
     <script>
         // Data for all questions with prototypes updated based on your provided solutions
-        const questionsData = {
+       const questionsData = {
             1: [
                 {
                     id: "only1",
@@ -547,37 +547,47 @@
             2: [
                 {
                     id: "checknumber",
-                    desc: "Write a function that returns true if the string passed as argument contains at least one digit (0-9), otherwise returns false.",
-                    proto: "func CheckNumber(arg string) bool"
+                    desc: "Write a function that takes a string as an argument and returns true if the string contains any number, otherwise return false.",
+                    proto: "func CheckNumber(arg string) bool {"
                 },
                 {
                     id: "countalpha",
-                    desc: "Write a function that takes a string and returns the number of alphabetical characters (a-z, A-Z) in it.",
+                    desc: "Write a function CountAlpha() that takes a string as an argument and returns the number of alphabetic characters in the string.",
                     proto: "func CountAlpha(s string) int"
                 },
                 {
                     id: "countcharacter",
-                    desc: "Write a function that counts the occurrences of a specific character in a string.",
+                    desc: `write a function that takes a string and a character as arguments and returns the number of times the character appears in the string.
+                            if the character is not in the string return 0
+                            if the string is empty return 0`,
                     proto: "func CountChar(str string, c rune) int"
                 },
                 {
                     id: "printif",
-                    desc: "Write a function that prints 'G' followed by a newline if the string length is greater than or equal to 3. Otherwise, print 'invalid input'.",
+                    desc: `Write a function that takes a string as an argument and returns the letter G followed by a newline \n if the argument length is more or equal than 3,
+                         otherwise returns Invalid Input followed by a newline \n.
+                        If it's an empty string return G followed by a newline \n.`,
                     proto: "func PrintIf(str string)"
                 },
                 {
                     id: "printifnot",
-                    desc: "Write a function that prints 'G' followed by a newline if the string length is less than 3. Otherwise, print 'invalid input'.",
+                    desc: `Write a function that takes a string and returns:
+                            "G\n" if the string's length is less than 3 (including empty string).
+                            "Invalid Input\n" otherwise.`,
                     proto: "func PrintIfNot(str string)"
                 },
                 {
                     id: "rectperimeter",
-                    desc: "Write a function that calculates and returns the perimeter of a rectangle given width and height. If w or h are negative or zero, return -1.",
+                    desc: `Write a function that takes two int's as arguments, representing the length of width and height of a rectangle and returning the perimeter of the rectangle.
+                        If one of the arguments is negative it should return -1`,
                     proto: "func RectPerimeter(w, h int) int"
                 },
                 {
                     id: "retainfirsthalf",
-                    desc: "Write a function that returns the first half of a string (len/2). If the length is 1, return the string. If empty, return empty.",
+                    desc: `Write a function called RetainFirstHalf() that takes a string as an argument and returns the first half of this string.
+                            If the length of the string is odd, round it down.
+                            If the string is empty, return an empty string.
+                            If the string length is equal to one, return the string.`,
                     proto: "func RetainFirstHalf(str string) string"
                 }
             ],
@@ -785,7 +795,7 @@
 
                         The groups of 5 characters must be separated by a space.
 
-The result must end with a newline \n.`,
+                        The result must end with a newline \n.`,
                     proto: "func FifthAndSkip(str string) string"
                 },
                 {
@@ -797,38 +807,38 @@ The result must end with a newline \n.`,
                     id: "revconcatalternate",
                     desc: `Write a function RevConcatAlternate that takes two slices of int as arguments.
 
-The function must return a new slice with the values of the two original slices, but:
+                    The function must return a new slice with the values of the two original slices, but:
 
-The values must be reversed (last element becomes first).
+                    The values must be reversed (last element becomes first).
 
-The values must be alternated between the two slices.
+                    The values must be alternated between the two slices.
 
-The alternation starts with the larger slice.
+                    The alternation starts with the larger slice.
 
-If the slices are of equal length, start with the first slice (slice1).
+                    If the slices are of equal length, start with the first slice (slice1).
 
-Any remaining values from the longer slice are added at the end.`,
+                    Any remaining values from the longer slice are added at the end.`,
                     proto: "func RevConcatAlternate(slice1, slice2 []int) []int"
                 },
                 {
                     id: "slice",
                     desc: `Write a function that receives a slice of strings and one or more integers. The function should return a slice of the string slice.
 
-The first integer is the start index.
+                    The first integer is the start index.
 
-The second integer is the end index.
+                    The second integer is the end index.
 
-The logic must follow the standard behavior of slicing:
+                    The logic must follow the standard behavior of slicing:
 
-If start is not provided, it defaults to 0.
+                    If start is not provided, it defaults to 0.
 
-If end is not provided, it defaults to the length of the slice.
+                    If end is not provided, it defaults to the length of the slice.
 
-If an index is negative, it counts from the end of the slice (e.g., -1 is the last element).
+                    If an index is negative, it counts from the end of the slice (e.g., -1 is the last element).
 
-If the range is invalid (e.g., start > end), return nil.
+                    If the range is invalid (e.g., start > end), return nil.
 
-Indices must be clamped to the bounds of the slice (e.g., if end is greater than length, treat it as length).`,
+                    Indices must be clamped to the bounds of the slice (e.g., if end is greater than length, treat it as length).`,
                     proto: "func Slice(a []string, nbrs ...int) []string"
                 }
             ],
@@ -900,7 +910,7 @@ Indices must be clamped to the bounds of the slice (e.g., if end is greater than
                     proto: "package main\n\nfunc main() {\n    // ...\n}"
                 }
             ]
-        };
+        }
 
         function showDashboard() {
             document.getElementById('dashboard-view').classList.remove('hidden');
