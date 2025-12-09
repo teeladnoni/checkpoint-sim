@@ -1158,85 +1158,221 @@ $`
             6: [
                 {
                     id: "fifthandskip",
-                    desc: `Write a function FifthAndSkip that takes a string and returns a formatted string.
+                    desc: `Write a function FifthAndSkip() that takes a string and returns another string. The function separates every five characters of the string with a space and removes the sixth one.
+                        <ol>
+                        <li>If there are spaces in the middle of a word, ignore them and get the first character after the spaces until you reach a length of 5.</li>
+                        <li>If the string is less than 5 characters return Invalid Input followed by a newline \n.</li>
+                        <li>If the string is empty return a newline \n.</li>
+                        </ol>`,
+                    proto: "func FifthAndSkip(str string) string",
+                    usageCode: `package main
 
-                        The function must remove spaces from the input string.
+import (
+    "fmt"
+    "piscine"
+)
 
-                        If the string (after removing spaces) has fewer than 5 characters, return "Invalid Input\n".
-
-                        If the string is empty, return "\n".
-
-                        Otherwise, take the first 5 characters, then skip the 6th character, then take the next 5 characters, and so on.
-
-                        The groups of 5 characters must be separated by a space.
-
-                        The result must end with a newline \n.`,
-                    proto: "func FifthAndSkip(str string) string"
+func main() {
+    fmt.Print(piscine.FifthAndSkip("abcdefghijklmnopqrstuwxyz"))
+    fmt.Print(piscine.FifthAndSkip("This is a short sentence"))
+    fmt.Print(piscine.FifthAndSkip("1234"))
+}`,
+                    usageOutput: `abcde ghijk mnopq stuwx z
+Thisi ashor tsent ence
+Invalid Input
+`
                 },
                 {
                     id: "notdecimal",
-                    desc: "Write a function that checks if a string contains non-decimal characters (not 0-9). Return true if it has non-decimals.",
-                    proto: "func NotDecimal(str string) bool"
+                    desc: `Write a function called NotDecimal() that takes as an argument a string in form of a float number with the decimal point and returns a string converted to int without the decimal point (you will have to multiply it by 10^n to remove the .).
+                        <ol>
+                        <li>If the number doesn't have a decimal point or there is only a zero after the . return the number followed by a newline \n.</li>
+                        <li>If the argument is empty return a newline \n.</li>
+                        <li>If the argument is not a number return it followed by a newline \n.</li>
+                        </ol>`,
+                    proto: "func NotDecimal(str string) bool",
+                    usageCode: `package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Print(NotDecimal("0.1"))
+    fmt.Print(NotDecimal("174.2"))
+    fmt.Print(NotDecimal("0.1255"))
+    fmt.Print(NotDecimal("1.20525856"))
+    fmt.Print(NotDecimal("-0.0f00d00"))
+    fmt.Print(NotDecimal(""))
+    fmt.Print(NotDecimal("-19.525856"))
+    fmt.Print(NotDecimal("1952"))
+}`,
+                    usageOutput: `1
+1742
+1255
+120525856
+-0.0f00d00
+
+-19525856
+1952
+`
                 },
                 {
                     id: "revconcatalternate",
-                    desc: `Write a function RevConcatAlternate that takes two slices of int as arguments.
+                    desc: `Write a function RevConcatAlternate() that receives two slices of int as arguments and returns a new slice with alternated values of each slice in reverse order.
+                        <ol>
+                        <li>The input slices can have different lengths.</li>
+                        <li>The new slice should start with the elements from the largest slice first and when they became equal size slices, it should add an element of the first given slice.</li>
+                        <li>If the slices are of equal length, the new slice should start with an element of the first slice.</li>
+                        </ol>`,
+                    proto: "func RevConcatAlternate(slice1, slice2 []int) []int",
+                    usageCode: `package main
 
-                    The function must return a new slice with the values of the two original slices, but:
+import (
+    "fmt"
+    "piscine"
+)
 
-                    The values must be reversed (last element becomes first).
-
-                    The values must be alternated between the two slices.
-
-                    The alternation starts with the larger slice.
-
-                    If the slices are of equal length, start with the first slice (slice1).
-
-                    Any remaining values from the longer slice are added at the end.`,
-                    proto: "func RevConcatAlternate(slice1, slice2 []int) []int"
+func main() {
+    fmt.Println(piscine.RevConcatAlternate([]int{1, 2, 3}, []int{4, 5, 6}))
+    fmt.Println(piscine.RevConcatAlternate([]int{1, 2, 3}, []int{4, 5, 6, 7, 8, 9}))
+    fmt.Println(piscine.RevConcatAlternate([]int{1, 2, 3, 9, 8}, []int{4, 5}))
+    fmt.Println(piscine.RevConcatAlternate([]int{1, 2, 3}, []int{}))
+}`,
+                    usageOutput: `[3 6 2 5 1 4]
+[9 3 8 2 7 1 6 5 4]
+[8 5 9 4 3 2 1]
+[3 2 1]`
                 },
                 {
                     id: "slice",
-                    desc: `Write a function that receives a slice of strings and one or more integers. The function should return a slice of the string slice.
+                    desc: `The function receives a slice of strings and one or more integers, and returns a slice of strings. The returned slice is part of the received one but cut from the position indicated in the first int, until the position indicated by the second int.
+                    In case there only exists one int, the resulting slice begins in the position indicated by the int and ends at the end of the received slice.
+                    The integers can be negative.`,
+                    proto: "func Slice(a []string, nbrs ...int) []string",
+                    usageCode: `package main
 
-                    The first integer is the start index.
+import (
+    "fmt"
+    "piscine"
+)
 
-                    The second integer is the end index.
-
-                    The logic must follow the standard behavior of slicing:
-
-                    If start is not provided, it defaults to 0.
-
-                    If end is not provided, it defaults to the length of the slice.
-
-                    If an index is negative, it counts from the end of the slice (e.g., -1 is the last element).
-
-                    If the range is invalid (e.g., start > end), return nil.
-
-                    Indices must be clamped to the bounds of the slice (e.g., if end is greater than length, treat it as length).`,
-                    proto: "func Slice(a []string, nbrs ...int) []string"
+func main(){
+    a := []string{"coding", "algorithm", "ascii", "package", "golang"}
+    fmt.Printf("%#v\n", piscine.Slice(a, 1))
+    fmt.Printf("%#v\n", piscine.Slice(a, 2, 4))
+    fmt.Printf("%#v\n", piscine.Slice(a, -3))
+    fmt.Printf("%#v\n", piscine.Slice(a, -2, -1))
+    fmt.Printf("%#v\n", piscine.Slice(a, 2, 0))
+}`,
+                    usageOutput: `[]string{"algorithm", "ascii", "package", "golang"}
+[]string{"ascii", "package"}
+[]string{"ascii", "package", "golang"}
+[]string{"package"}
+[]string(nil)`
                 }
             ],
             7: [
                 {
                     id: "findpairs",
-                    desc: "Write a program that finds pairs of numbers in an array that sum up to a target value.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that finds all pairs of elements in an integer array that sum up to a given target value. The program should output a list of pairs, each representing the indices of the elements that form the pair.
+                        <ol>
+                        <li>Ensure it's possible to have positive or negative integers in the array.</li>
+                        <li>Ensure each element is used only once in a pair, although the element can be repeated in different pairs.</li>
+                        <li>Allow for multiple pairs to sum up to the target value.</li>
+                        <li>Return the message "No pairs found." when no pair is present.</li>
+                        <li>Return the message "Invalid target sum." if the target is invalid.</li>
+                        <li>Return the message "Invalid number: " if the number in the array is invalid.</li>
+                        <li>For any input format that deviates from the specified format "[1, 2, 3, 4, 5]" "6", the program will return an "Invalid input." error message.</li>
+                        </ol>`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+
+$ go run . "[1, 2, 3, 4, 5]" "6"
+Pairs with sum 6: [[0 4] [1 3]]
+$ go run . "[-1, 2, -3, 4, -5]" "1"
+Pairs with sum 1: [[0 1] [2 3]]
+$ go run . "[1, 2, 3, 4, 5]" "10"
+No pairs found.
+$ go run . "[-1, -2, -3, -4, -5]" "-5"
+Pairs with sum -5: [[0 3] [1 2]]
+$ go run . "[1, 2, 3, 4, 20, -4, 5]" "2 5"
+Invalid target sum.
+$ go run . "[1, 2, 3, 4, 20, p, 5]" "5"
+Invalid number: p
+$ go run . "[1, 2, 3, 4" "5"
+Invalid input.
+$ go run . "1, 2, 3, 4" "5"
+Invalid input.
+$`
                 },
                 {
                     id: "revwstr",
-                    desc: "Write a program that takes a string and prints the words in reverse order.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes a string as a parameter, and prints its words in reverse, followed by a newline.
+                        <ol>
+                        <li>A word is a sequence of alphanumerical characters.</li>
+                        <li>If the number of arguments is different from 1, the program will display nothing.</li>
+                        </ol>`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+
+$ go run . "the time of contempt precedes that of indifference"
+indifference of that precedes contempt of time the
+$ go run . "abcdefghijklm"
+abcdefghijklm
+$ go run . "he stared at the mountain"
+mountain the at stared he
+$ go run . "" | cat-e
+$
+$`
                 },
                 {
                     id: "rostring",
-                    desc: "Write a program that rotates the first word of a string to the end and displays the result.",
-                    proto: "package main\n\nfunc main() {\n    // ...\n}"
+                    desc: `Write a program that takes a string and displays this string after rotating it one word to the left.
+                        Thus, the first word becomes the last, and others stay in the same order.
+                        A word is a sequence of alphanumerical characters.
+                        Words will be separated by only one space in the output.
+                        If the number of arguments is different from 1, the program displays a newline.`,
+                    proto: "package main\n\nfunc main() {\n    // ...\n}",
+                    usageCode: `usage
+
+$ go run . "abc    " | cat -e
+abc$
+$ go run . "Let there      be light"
+there be light Let
+$ go run . "     AkjhZ zLKIJz , 23y"
+zLKIJz , 23y AkjhZ
+$ go run . | cat -e
+$
+$`
                 },
                 {
                     id: "wordflip",
-                    desc: "Write a function that reverses the order of words in a string, but keeps the words themselves intact.",
-                    proto: "func WordFlip(str string) string"
+                    desc: `Write a function WordFlip() that takes a string as input and returns it in reverse order.
+                        <ol>
+                        <li>The output should be followed by a newline \n.</li>
+                        <li>If the string is empty, return Invalid Output.</li>
+                        <li>Ignore multiple spaces between words and trim any leading or trailing spaces in the string.</li>
+                        </ol>`,
+                    proto: "func WordFlip(str string) string",
+                    usageCode: `package main
+
+import (
+    "fmt"
+    "piscine"
+)
+
+func main() {
+    fmt.Print(piscine.WordFlip("First second last"))
+    fmt.Print(piscine.WordFlip(""))
+    fmt.Print(piscine.WordFlip("     "))
+    fmt.Print(piscine.WordFlip(" hello  all  of  you! "))
+}`,
+                    usageOutput: `last second First
+Invalid Output
+Invalid Output
+you! of all hello
+`
                 }
             ],
             8: [
